@@ -7,6 +7,6 @@ table { font-size: 17px; }
 a { text-decoration: none; color: #DDB05B }
 input { height: 22px; border: 1px color: #DDB05B border-radius: 2px; -moz-border-radius: 2px; }
 button { height: 22px; border: 1px color: #DDB05B border-radius: 2px; -moz-border-radius: 2px; }
-.button { height: 22px; background: color: #DDB05B; border: 1px color: #b48f49; color: #FFFFFF; font-weight: bold; border-radius: 4px; -moz-border-radius: 4px; }
+.button { height: 22px; background: color: #DDB05B; border: 1px font-weight: bold; border-radius: 4px; -moz-border-radius: 4px; }
 .content {overflow-x: hidden;width: 800px; background-color: rgba(230, 230, 230, 0.3); font-weight: bold; padding:10px; border-radius: 10px; -moz-border-radius: 10px;}
 .title {overflow-x: hidden;overflow-y: hidden;font-size: 30px; width: 100%; background-color: rgba(170, 122, 74, 0.25); font-weight: bold; padding: 0px; border-radius: 3px; -moz-border-radius: 3px;}
