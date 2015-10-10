@@ -5,32 +5,24 @@
    <script src="camera.js" data-no-instant></script>
 </head>
 <body>
-   <center>
-   <div align="center" class="title">
-   <table style="width: 100%; height: 50px;">
-      <tr>
-         <td width="50" align="left" nowrap style="width: 30px;">
-            <img width="40px" height="40px" src="biscuit.png" border="0">
-         </td>
-         <td width="75" align="left" nowrap id="title" style="font-size: 32px; font-weight: bold;">
-         <a style="color: #DDB05B;">Biscuit</a>&nbsp;&nbsp;</td>
-         <td width="10" align="left" nowrap id="title" style="width: 1px;">
-         <img src="break.png" />
-       </td>
-         <td align="left" nowrap id="opt1" style="font-size: 24px; font-weight: bold;">
-            <a href="index.html" style="color: #DDB05B;">Home</a>
-         </td>
-         <td width="10" align="left" nowrap id="title" style="width: 1px;">
-         <img src="break.png" />
-       </td>
-       <td width="600" align="left" nowrap id="opt1" style="font-size: 24px; font-weight: bold;">
-          <a style="color: #DDB05B;">About</a>
-       </td>
-      </tr>
-   </table>
-   </div><div id="form1">
-   <video id="video" width="320" height="240" autoplay></video>
-<canvas id="canvas" width="320" height="240"></canvas><button id="snap">Snap Photo</button>
+    <nav>
+        <ul>
+            <img id="logo" src="biscuit.png" />
+            <h1 id="appTitle">Biscuit</h1>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="camera.html">Camera</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+    <center>
+        <div id="form1">
+            <video style="float: center;"id="video" width="320" height="240" autoplay></video>
+            <canvas id="canvas" style="float: center;margin: 0 0 0 -325px;opacity: 0.5;" width="320" height="240"></canvas>
+            <br/>
+            <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
+            <br/>
+            <h3>Frame</h3>
+            <br><div style="float: left;margin-left:80px;" id="frame1"></div><div style="float: left" id="frame2"></div><div style="float: left;" id="frame3"></div><div style="float: left;margin-right:80px;" id="frame4"></div>
 </div>
 <script src="instantclick.min.js" data-no-instant></script>
 <script data-no-instant>InstantClick.init();</script>

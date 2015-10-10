@@ -33,9 +33,62 @@ button {
     border-radius: 2px;
     -moz-border-radius: 2px;
 }
+
+/*=====================
+=========NAVIGATION BAR
+=======================*/
+nav{
+    width: 100%;
+    background-color: rgba(170, 122, 74, 0.25);
+    text-align: left;
+    font-weight: 600;
+    border-radius: 3px;
+    font-size: 24px;
+    padding: 0 3px;
+    margin: 0;
+}
+nav ul{
+    margin: 0;
+    padding: 0;
+}
+nav ul li{
+    display:inline-block;
+    list-style-type: none;
+    padding: 3px 0;
+    margin: 0;
+    vertical-align: middle;
+    color: #DDB05B;
+    position: relative;
+}
+nav ul li:hover{
+    color: #664114;
+    background-color: rgba(170, 122, 74, 0.4);
+}
+nav ul li a{
+    padding: 20px 20px 20px 10px;
+    margin: 0;
+    display: block;
+    border-left: 1px solid rgb(166,119,72);
+    color: inherit;
+    vertical-align: middle;
+}
+#logo{
+    height: 40px;
+    vertical-align: middle;
+}
+#appTitle{
+    border: 0; 
+    font-size: 32px;
+    padding: 19px 20px 19px 10px;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0;
+} 
+
+
 .button {
     height: 22px;
-    background-color: #DDB05B; 
+    background-color: #DDB05B;
     border: 1px solid #b48f49;
     color: #FFFFFF;
     font-weight: bold;
@@ -54,11 +107,17 @@ button {
 .title {
     overflow-x: hidden;
     overflow-y: hidden;
-    font-size: 30px; 
-    width: 100%; 
-    background-color: rgba(170, 122, 74, 0.25); 
-    font-weight: bold; 
-    padding: 0; 
+    font-size: 30px;
+    width: 100%;
+    background-color: rgba(170, 122, 74, 0.25);
+    font-weight: bold;
+    padding: 0;
     border-radius: 3px;
     -moz-border-radius: 3px;
+}
+/*============
+=======CAPTURE
+==============*/
+#captureForm{
+    margin: 0 auto;
 }
