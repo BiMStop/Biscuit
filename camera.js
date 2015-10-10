@@ -1,9 +1,8 @@
-// Put event listeners into place
+var curframe = 1;
 window.addEventListener("DOMContentLoaded", function () {
 		// Grab elements, create settings, etc.
 		var canvas = document.getElementById("canvas"),
 	context = canvas.getContext("2d"),
-	context2 = canvas2.getContext("2d"),
 	video = document.getElementById("video"),
 	videoObj = { "video": true },
 	errBack = function (error) {
@@ -24,6 +23,12 @@ window.addEventListener("DOMContentLoaded", function () {
 		// Trigger photo take
 		document.getElementById("snap").addEventListener("click", function () {
 				context.drawImage(video, 0, 0, 320, 240);
-				context2.drawImage(video, 0, 0, 320, 240);
+				eval('var frame' + curframe + ' = canvas.toDataURL("image/png")');
+				eval('var frame = '+"frame"+curframe+'');
+				console.log(frame);
+				console.log(frame1);
+				document.getElementById("frame"+curframe).innerHTML = '<img width="160" height="120" src="'+frame+'"/>';
+				curframe = parseInt(curframe);
+				curframe = curframe + 1;
 		});
 }, false);
