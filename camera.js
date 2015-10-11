@@ -33,6 +33,8 @@ window.addEventListener("DOMContentLoaded", function() {
         eval('var frame = ' + "frame" + curframe + '');
         // Set current frame based on variable that changes
         document.getElementById("frame" + curframe).innerHTML = '<img width="160" height="120" src="' + frame + '"/>';
+				console.log(frame1);
+				// Debug
         // Show image taken on page, based on current frame.
         console.log("cur1: " + curframe);
         // Debug
@@ -49,5 +51,13 @@ window.addEventListener("DOMContentLoaded", function() {
         }
 
     });
+		document.getElementById("download").addEventListener("click", function() {
+		var fs = require('fs');
+		var http = require('http');
+		var file = fs.createWriteStream("file.jpg");
+		var request = http.get(frame, function(response) {
+  response.pipe(file);
+	});
+});
 
 }, false);
