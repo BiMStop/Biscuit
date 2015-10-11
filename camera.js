@@ -3,6 +3,8 @@ var curframe = 1;
 window.addEventListener("DOMContentLoaded", function() {
   var base64 = require('node-base64-image');
   // Grab elements, create settings, etc.
+  var canvasuse = document.getElementById("canvasuse");
+  var contextuse = canvasuse.getContext("2d");
   var canvas = document.getElementById("canvas"),
     context = canvas.getContext("2d"),
     video = document.getElementById("video"),
@@ -28,12 +30,21 @@ window.addEventListener("DOMContentLoaded", function() {
   // Trigger photo take
   document.getElementById("snap").addEventListener("click", function() {
     context.drawImage(video, 0, 0, 320, 240);
-    // Make grab image from video.
+    // Make grab image from video. Grab for preview
+    contextuse.drawImage(video, 0, 0, 1280, 960);
+    // Grab for export.
     eval('var frame' + curframe + ' = canvas.toDataURL("image/jpeg")');
     // Get Image URL
+    eval('var frameuse' + curframe + ' = canvasuse.toDataURL("image/jpeg")');
+    // Get Image URL for export
     eval('var frame = ' + "frame" + curframe + '');
-    // Set current frame based on variable that changes
-    document.getElementById("framez" + curframe).innerHTML = '<img id="f'+curframe+'" width="160" height="120" src="' + frame + '"/>';
+    // Set current frame based on variable that changes aka variable variable.... ha. haha.
+    document.getElementById("framez" + curframe).innerHTML = '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>';
+    //
+    eval('var frameuse = ' + "frameuse" + curframe + '');
+    // Same.
+    document.getElementById("framezuse" + curframe).innerHTML = '<img id="fu' + curframe + '" width="1280" height="960" src="' + frameuse + '"/>';
+    // More export
     console.log(frame1);
     // Debug
     // Show image taken on page, based on current frame.
@@ -53,18 +64,31 @@ window.addEventListener("DOMContentLoaded", function() {
 
   });
   document.getElementById("download").addEventListener("click", function() {
-    var farem = document.getElementById("f1").src;
-    console.log("farem: "+farem);
-    var frames1 = farem.replace('data:image/jpeg;base64,','');
-    console.log("frames1: "+frames1);
-    var options = {filename: 'testz'};
+    // Check for button press.
+    var farem = document.getElementById("fu1").src;
+    // Get source of hidden image.
+    console.log("farem: " + farem);
+    // Debug
+    var frames1 = farem.replace('data:image/jpeg;base64,', '');
+    // Convert to only being a base64 string.
+    console.log("frames1: " + frames1);
+    // Debug
+    var options = {
+      filename: 'testz'
+    };
+    // Set filename, will be dynamic later.
     var imageData = new Buffer(frames1, 'base64');
+    // Base64 image load.
 
-    base64.base64decoder(imageData, options, function (err, saved) {
-    if (err) { console.log(err); }
-    console.log(saved);
-  });
+    base64.base64decoder(imageData, options, function(err, saved) {
+      if (err) {
+        console.log(err);
+      }
+      console.log(saved);
+    });
+    // Export image to filesystem.
     var fs = require('fs');
+    // Require the filesystem to be accessable.
   });
 
 }, false);
