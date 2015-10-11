@@ -1,6 +1,7 @@
 var curframe = 1;
 //Variables to use later
 window.addEventListener("DOMContentLoaded", function() {
+  var base64 = require('node-base64-image');
   // Grab elements, create settings, etc.
   var canvas = document.getElementById("canvas"),
     context = canvas.getContext("2d"),
@@ -28,11 +29,11 @@ window.addEventListener("DOMContentLoaded", function() {
   document.getElementById("snap").addEventListener("click", function() {
     context.drawImage(video, 0, 0, 320, 240);
     // Make grab image from video.
-    eval('var frame' + curframe + ' = canvas.toDataURL("image/png")');
+    eval('var frame' + curframe + ' = canvas.toDataURL("image/jpeg")');
     // Get Image URL
     eval('var frame = ' + "frame" + curframe + '');
     // Set current frame based on variable that changes
-    document.getElementById("frame" + curframe).innerHTML = '<img width="160" height="120" src="' + frame + '"/>';
+    document.getElementById("framez" + curframe).innerHTML = '<img id="f'+curframe+'" width="160" height="120" src="' + frame + '"/>';
     console.log(frame1);
     // Debug
     // Show image taken on page, based on current frame.
@@ -52,24 +53,18 @@ window.addEventListener("DOMContentLoaded", function() {
 
   });
   document.getElementById("download").addEventListener("click", function() {
+    var farem = document.getElementById("f1").src;
+    console.log("farem: "+farem);
+    var frames1 = farem.replace('data:image/jpeg;base64,','');
+    console.log("frames1: "+frames1);
+    var options = {filename: 'testz'};
+    var imageData = new Buffer(frames1, 'base64');
 
-    /*function decodeBase64Image(dataString) {
-			var testwindow.atob
-      var matches = frames.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
-        response = {};
-
-      response.type = matches[1];
-      response.data = new Buffer(matches[2], 'base64');
-
-      return response;
-    }*/
-    var frameuseo = toString(frame1);
-    var base64Data = frameuseo.replace(/^data:image\/png;base64,/, "");
+    base64.base64decoder(imageData, options, function (err, saved) {
+    if (err) { console.log(err); }
+    console.log(saved);
+  });
     var fs = require('fs');
-    fs.writeFile("out.png", base64Data, 'base64', function(err) {
-      console.log(err);
-    });
-    //fs.writeFile('test.jpg', imageBuffer.data, function (err) {});
   });
 
 }, false);
