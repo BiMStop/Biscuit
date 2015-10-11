@@ -7,37 +7,23 @@
 </head>
 
 <body>
+  <nav>
+        <ul>
+            <img id="logo" src="biscuit.png" />
+            <h1 id="appTitle">Biscuit</h1>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="camera.html">Camera</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
   <center>
-    <div align="center" class="title">
-      <table style="width: 100%; height: 50px;">
-        <tr>
-          <td width="50" align="left" nowrap style="width: 30px;">
-            <img width="40px" height="40px" src="biscuit.png" border="0">
-          </td>
-          <td width="75" align="left" nowrap id="title" style="font-size: 32px; font-weight: bold;">
-            <a style="color: #DDB05B;">Biscuit</a>&nbsp;&nbsp;</td>
-          <td width="10" align="left" nowrap id="title" style="width: 1px;">
-            <img src="break.png" />
-          </td>
-          <td align="left" nowrap id="opt1" style="font-size: 24px; font-weight: bold;">
-            <a href="index.html" style="color: #DDB05B;">Home</a>
-          </td>
-          <td width="10" align="left" nowrap id="title" style="width: 1px;">
-            <img src="break.png" />
-          </td>
-          <td width="600" align="left" nowrap id="opt1" style="font-size: 24px; font-weight: bold;">
-            <a style="color: #DDB05B;">About</a>
-          </td>
-        </tr>
-      </table>
-    </div>
     <div id="form1">
       <video style="float: center;" id="video" width="320" height="240" autoplay></video>
       <canvas id="canvas" style="float: center;margin: 0 0 0 -325px;opacity: 0.5;" width="320" height="240"></canvas>
       <br>
       <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
       <br>
-      <h3>Frames</h3>
+      <h3>Frames</h3><button id="download">Download</button>
       <div style="float: left;margin-left:71px;" id="frame1"></div>
       <div style="float: left;margin-left:6px;" id="frame2"></div>
       <div style="float: left;margin-left:6px;" id="frame3"></div>
