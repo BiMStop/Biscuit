@@ -12,6 +12,18 @@ body {
   margin: 0px;
   padding: 0px;
 }
+h2{
+    font-size: 1.5em;
+    margin: 0.83em 0;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
+}
+h3{
+    font-size: 1.17em;
+    margin: 1em 0;
+    font-weight: bold;
+    font-family: biscuit;
+}
 table {
   font-size: 17px;
 }
@@ -19,12 +31,14 @@ a {
   text-decoration: none;
   color: #DDB05B;
 }
+a:hover{
+    text-decoration: underline;
+}
 input {
   height: 22px;
   border: 1px;
   color: #DDB05B;
   border-radius: 2px;
-  -moz-border-radius: 2px;
 }
 button {
   height: 22px;
@@ -33,7 +47,12 @@ button {
   border-radius: 2px;
   -moz-border-radius: 2px;
 }
-
+p {
+    font-weight: 400;
+}
+.bold{
+    font-weight: 700;
+}
 /*=====================
 =========NAVIGATION BAR
 =======================*/
@@ -49,8 +68,9 @@ nav {
   margin: 0;
 }
 nav ul {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: 860px;
 }
 nav ul li {
   display: inline-block;
@@ -93,16 +113,16 @@ nav ul li a {
   color: #FFFFFF;
   font-weight: bold;
   border-radius: 4px;
-  -moz-border-radius: 4px;
 }
 .content {
-  overflow-x: hidden;
-  width: 800px;
-  background-color: rgba(230, 230, 230, 0.3);
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
+    overflow-x: hidden;
+    width: calc(100% - 70px);
+    max-width: 800px;
+    background-color: rgba(230, 230, 230, 0.3);
+    padding: 10px 10px 2em 60px;
+    border-radius: 10px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
 }
 .title {
   overflow-x: hidden;
