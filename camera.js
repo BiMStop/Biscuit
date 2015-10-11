@@ -64,8 +64,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
   });
   document.getElementById("download").addEventListener("click", function() {
+    var lastframe = curframe - 1;
     // Check for button press.
-    var farem = document.getElementById("fu1").src;
+    var farem = document.getElementById("fu"+lastframe).src;
     // Get source of hidden image.
     console.log("farem: " + farem);
     // Debug
@@ -74,7 +75,7 @@ window.addEventListener("DOMContentLoaded", function() {
     console.log("frames1: " + frames1);
     // Debug
     var options = {
-      filename: 'testz'
+      filename: 'frame'+lastframe
     };
     // Set filename, will be dynamic later.
     var imageData = new Buffer(frames1, 'base64');
