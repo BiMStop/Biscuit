@@ -1,4 +1,5 @@
 var curframe = 1;
+var stillgo = 1;
 //Variables to use later
 window.addEventListener("DOMContentLoaded", function() {
   var base64 = require('node-base64-image');
@@ -51,11 +52,13 @@ window.addEventListener("DOMContentLoaded", function() {
     console.log("cur1: " + curframe);
     // Debug
     curframe = curframe + 1;
+    stillgo = stillgo + 1;
     // Make current frame the next frame.
     console.log("cur2: " + curframe)
       // Debug
     if (curframe >= 5) {
       // if the current frame is now 5 or higher (needs to check for higher becuase the equal was changing the variable)
+
       console.log("curif: " + curframe);
       // Debug
       curframe = 1;
