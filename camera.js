@@ -1,6 +1,8 @@
 var curframe = 1;
 var stillgo = 1;
 //Variables to use later
+var framearr = new Array();
+// Array to store frames.
 window.addEventListener("DOMContentLoaded", function() {
   var base64 = require('node-base64-image');
   // Grab elements, create settings, etc.
@@ -40,8 +42,10 @@ window.addEventListener("DOMContentLoaded", function() {
     // Get Image URL for export
     eval('var frame = ' + "frame" + curframe + '');
     // Set current frame based on variable that changes aka variable variable.... ha. haha.
+    framearr.push(frame);
+    // Add current frame to frame array.
     document.getElementById("framez" + curframe).innerHTML = '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>';
-    //
+    // Preview
     eval('var frameuse = ' + "frameuse" + curframe + '');
     // Same.
     document.getElementById("framezuse" + curframe).innerHTML = '<img id="fu' + curframe + '" width="1280" height="960" src="' + frameuse + '"/>';
@@ -67,9 +71,15 @@ window.addEventListener("DOMContentLoaded", function() {
 
   });
   document.getElementById("download").addEventListener("click", function() {
+    var go = 0
+    for (i = 0; i < framearr.length; i++) {
+      var frameprocess = framearr.length - go;
+      eval('var framesave' + frameprocess + ' = ' + framearr[i]);
+      go = go + 1;
+    }
     var lastframe = curframe - 1;
     // Check for button press.
-    var farem = document.getElementById("fu"+lastframe).src;
+    var farem = document.getElementById("fu" + lastframe).src;
     // Get source of hidden image.
     console.log("farem: " + farem);
     // Debug
@@ -78,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function() {
     console.log("frames1: " + frames1);
     // Debug
     var options = {
-      filename: 'frame'+lastframe
+      filename: 'frame' + lastframe
     };
     // Set filename, will be dynamic later.
     var imageData = new Buffer(frames1, 'base64');
