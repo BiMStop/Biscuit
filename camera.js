@@ -96,7 +96,7 @@ window.addEventListener("DOMContentLoaded", function() {
         }
         console.log(saved);
       });
-      go = go + 1;
+      go = go - 1;
     }
     /*var farem = document.getElementById("fu" + lastframe).src;
     // Get source of hidden image.
