@@ -1,34 +1,38 @@
-var curframe = 1;
-var stillgo = 1;
-var i;
-var fs = require('fs');
-//Variables to use later
-var framearr = new Array();
-// Array to store frames.
+var fs     = require('fs'),
+    base64 = require('node-base64-image');
+
+// Variables to use later
+var stillgo  = 1,
+    curframe = 1,
+    framearr = [];
+
+
 window.addEventListener("DOMContentLoaded", function() {
-  var base64 = require('node-base64-image');
   // Grab elements, create settings, etc.
-  var canvasuse = document.getElementById("canvasuse");
-  var contextuse = canvasuse.getContext("2d");
-  var canvas = document.getElementById("canvas"),
-    context = canvas.getContext("2d"),
-    video = document.getElementById("video"),
-    videoObj = {
-      "video": true
-    },
-    errBack = function(error) {
-      console.log("Video capture error: ", error.code);
-    };
-  // Put video listeners into place
-  if (navigator.getUserMedia) { // Standard
+  var canvasuse  = document.querySelector("#canvasuse"),
+      contextuse = canvasuse.getContext("2d"),
+      canvas     = document.querySelector("#canvas"),
+      context    = canvas.getContext("2d"),
+      video      = document.getElementById("video"),
+      videoObj   = { "video": true };
+
+
+  function errBack(error) {
+    console.log("Video capture error: ", error.code);
+  };
+
+  // Display the video stream
+  // Standardized version
+  if (navigator.getUserMedia) {
     navigator.getUserMedia(videoObj, function(stream) {
       video.src = stream;
       video.play();
-      // Show what is on camera.
     }, errBack);
-  } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+
+    // WebKit-prefixed version
+  } else if (navigator.webkitGetUserMedia) {
     navigator.webkitGetUserMedia(videoObj, function(stream) {
-      video.src = window.webkitURL.createObjectURL(stream);
+      video.src = window.URL.createObjectURL(stream);
       video.play();
     }, errBack);
   }
@@ -61,7 +65,7 @@ window.addEventListener("DOMContentLoaded", function() {
     curframe = curframe + 1;
     stillgo = stillgo + 1;
     // Make current frame the next frame.
-    console.log("cur2: " + curframe)
+    console.log("cur2: " + curframe);
       // Debug
     if (curframe >= 5) {
       // if the current frame is now 5 or higher (needs to check for higher becuase the equal was changing the variable)
@@ -75,10 +79,10 @@ window.addEventListener("DOMContentLoaded", function() {
   });
   document.getElementById("download").addEventListener("click", function() {
     // Check for button press.
-    var go = 0
+    var go = 0;
       // Setup
-    for (i = 0; i < framearr.length; i++) {
-      console.log("framearr: " + framearr)
+    for (var i = 0; i < framearr.length; i++) {
+      console.log("framearr: " + framearr);
       var frameprocess = framearr.length - go;
       console.log("frameprocess: " + frameprocess);
       var framesave = framearr[i];
