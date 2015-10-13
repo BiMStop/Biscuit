@@ -1,5 +1,6 @@
 var curframe = 1;
 var stillgo = 1;
+var i;
 var fs = require('fs');
 //Variables to use later
 var framearr = new Array();
@@ -41,9 +42,11 @@ window.addEventListener("DOMContentLoaded", function() {
     // Get Image URL
     eval('var frameuse' + curframe + ' = canvasuse.toDataURL("image/jpeg")');
     // Get Image URL for export
+    var frameuse = canvasuse.toDataURL("image/jpeg");
     eval('var frame = ' + "frame" + curframe + '');
     // Set current frame based on variable that changes aka variable variable.... ha. haha.
-    framearr.push(frame);
+    var frameq = frameuse.replace('data:image/jpeg;base64,', '');
+    framearr.push(frameq);
     // Add current frame to frame array.
     document.getElementById("framez" + curframe).innerHTML = '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>';
     // Preview
@@ -73,15 +76,19 @@ window.addEventListener("DOMContentLoaded", function() {
   document.getElementById("download").addEventListener("click", function() {
     // Check for button press.
     var go = 0
-    // Setup
+      // Setup
     for (i = 0; i < framearr.length; i++) {
+      console.log("framearr: " + framearr)
       var frameprocess = framearr.length - go;
-      eval('var framesave = ' + framearr[i]);
-      eval('var frame64 = ' + framesave.replace('data:image/jpeg;base64,', ''));
+      console.log("frameprocess: " + frameprocess);
+      var framesave = framearr[i];
+      console.log("framesave: " + framesave);
+      var frame64 = framesave.replace('data:image/jpeg;base64,', '');
+      console.log("frame64: " + frame64);
       var options = {
         filename: 'frame' + frameprocess
       };
-      var imageData = new Buffer(frames1, 'base64');
+      var imageData = new Buffer(frame64, 'base64');
       // Base64 image load.
       base64.base64decoder(imageData, options, function(err, saved) {
         if (err) {
