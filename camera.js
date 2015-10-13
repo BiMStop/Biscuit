@@ -1,5 +1,6 @@
 var curframe = 1;
 var stillgo = 1;
+var fs = require('fs');
 //Variables to use later
 var framearr = new Array();
 // Array to store frames.
@@ -52,7 +53,6 @@ window.addEventListener("DOMContentLoaded", function() {
     // More export
     console.log(frame1);
     // Debug
-    // Show image taken on page, based on current frame.
     console.log("cur1: " + curframe);
     // Debug
     curframe = curframe + 1;
@@ -71,15 +71,27 @@ window.addEventListener("DOMContentLoaded", function() {
 
   });
   document.getElementById("download").addEventListener("click", function() {
+    // Check for button press.
     var go = 0
+    // Setup
     for (i = 0; i < framearr.length; i++) {
       var frameprocess = framearr.length - go;
-      eval('var framesave' + frameprocess + ' = ' + framearr[i]);
+      eval('var framesave = ' + framearr[i]);
+      eval('var frame64 = ' + framesave.replace('data:image/jpeg;base64,', ''));
+      var options = {
+        filename: 'frame' + frameprocess
+      };
+      var imageData = new Buffer(frames1, 'base64');
+      // Base64 image load.
+      base64.base64decoder(imageData, options, function(err, saved) {
+        if (err) {
+          console.log(err);
+        }
+        console.log(saved);
+      });
       go = go + 1;
     }
-    var lastframe = curframe - 1;
-    // Check for button press.
-    var farem = document.getElementById("fu" + lastframe).src;
+    /*var farem = document.getElementById("fu" + lastframe).src;
     // Get source of hidden image.
     console.log("farem: " + farem);
     // Debug
@@ -93,7 +105,6 @@ window.addEventListener("DOMContentLoaded", function() {
     // Set filename, will be dynamic later.
     var imageData = new Buffer(frames1, 'base64');
     // Base64 image load.
-
     base64.base64decoder(imageData, options, function(err, saved) {
       if (err) {
         console.log(err);
@@ -102,7 +113,7 @@ window.addEventListener("DOMContentLoaded", function() {
     });
     // Export image to filesystem.
     var fs = require('fs');
-    // Require the filesystem to be accessable.
+    // Require the filesystem to be accessable.*/
   });
 
 }, false);
