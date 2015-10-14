@@ -9,11 +9,11 @@ var curframe   = 1,
 
 window.addEventListener("DOMContentLoaded", function() {
   // Connect to the required DOM elements
-  var canvasuse  = document.querySelector("#canvasuse"),
-      contextuse = canvasuse.getContext("2d"),
-      canvas     = document.querySelector("#canvas"),
-      context    = canvas.getContext("2d"),
-      video      = document.getElementById("video"),
+  var canvasuse     = document.querySelector("#canvasuse"),
+      contextuse    = canvasuse.getContext("2d"),
+      canvas        = document.querySelector("#canvas"),
+      context       = canvas.getContext("2d"),
+      video         = document.getElementById("video"),
       QframePreview = document.querySelector("#area-frame-preview");
 
 
@@ -45,9 +45,9 @@ window.addEventListener("DOMContentLoaded", function() {
     contextuse.drawImage(video, 0, 0, 1280, 960);
 
     // Convert the frame to JPG format
-    var frame = canvas.toDataURL("image/jpeg"),
+    var frame    = canvas.toDataURL("image/jpeg"),
         frameuse = canvasuse.toDataURL("image/jpeg"),
-        frameq = frameuse.replace('data:image/jpeg;base64,', '');
+        frameq   = frameuse.replace('data:image/jpeg;base64,', '');
 
     // Store the frame for saving later
     framearr.push(frameq);
