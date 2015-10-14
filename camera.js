@@ -1,84 +1,71 @@
-var curframe = 1;
-var stillgo = 1;
-var i;
-var fs = require('fs');
-//Variables to use later
-var framearr = new Array();
-// Array to store frames.
+var fs     = require('fs'),
+    base64 = require('node-base64-image');
+
+// Variables to use later
+var curframe   = 1,
+    framearr   = [],
+    streamOpts = { "video": true };
+
+
 window.addEventListener("DOMContentLoaded", function() {
-  var base64 = require('node-base64-image');
-  // Grab elements, create settings, etc.
-  var canvasuse = document.getElementById("canvasuse");
-  var contextuse = canvasuse.getContext("2d");
-  var canvas = document.getElementById("canvas"),
-    context = canvas.getContext("2d"),
-    video = document.getElementById("video"),
-    videoObj = {
-      "video": true
-    },
-    errBack = function(error) {
-      console.log("Video capture error: ", error.code);
-    };
-  // Put video listeners into place
-  if (navigator.getUserMedia) { // Standard
-    navigator.getUserMedia(videoObj, function(stream) {
+  // Connect to the required DOM elements
+  var canvasuse     = document.querySelector("#canvasuse"),
+      contextuse    = canvasuse.getContext("2d"),
+      canvas        = document.querySelector("#canvas"),
+      context       = canvas.getContext("2d"),
+      video         = document.getElementById("video"),
+      QframePreview = document.querySelector("#area-frame-preview");
+
+
+  function errBack(error) {
+    console.log("Video capture error: ", error.code);
+  };
+
+  // Display the video stream
+  // Standardized version
+  if (navigator.getUserMedia) {
+    navigator.getUserMedia(streamOpts, function(stream) {
       video.src = stream;
       video.play();
-      // Show what is on camera.
     }, errBack);
-  } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
-    navigator.webkitGetUserMedia(videoObj, function(stream) {
-      video.src = window.webkitURL.createObjectURL(stream);
+
+    // WebKit-prefixed version
+  } else if (navigator.webkitGetUserMedia) {
+    navigator.webkitGetUserMedia(streamOpts, function(stream) {
+      video.src = window.URL.createObjectURL(stream);
       video.play();
     }, errBack);
   }
-  // Trigger photo take
-  document.getElementById("snap").addEventListener("click", function() {
+
+
+  // Take picture button
+  document.querySelector("#snap").addEventListener("click", function() {
+    // Draw the frame for both preview and export
     context.drawImage(video, 0, 0, 320, 240);
-    // Make grab image from video. Grab for preview
     contextuse.drawImage(video, 0, 0, 1280, 960);
-    // Grab for export.
-    eval('var frame' + curframe + ' = canvas.toDataURL("image/jpeg")');
-    // Get Image URL
-    eval('var frameuse' + curframe + ' = canvasuse.toDataURL("image/jpeg")');
-    // Get Image URL for export
-    var frameuse = canvasuse.toDataURL("image/jpeg");
-    eval('var frame = ' + "frame" + curframe + '');
-    // Set current frame based on variable that changes aka variable variable.... ha. haha.
-    var frameq = frameuse.replace('data:image/jpeg;base64,', '');
+
+    // Convert the frame to JPG format
+    var frame    = canvas.toDataURL("image/jpeg"),
+        frameuse = canvasuse.toDataURL("image/jpeg"),
+        frameq   = frameuse.replace('data:image/jpeg;base64,', '');
+
+    // Store the frame for saving later
     framearr.push(frameq);
-    // Add current frame to frame array.
-    document.getElementById("framez" + curframe).innerHTML = '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>';
-    // Preview
-    eval('var frameuse = ' + "frameuse" + curframe + '');
-    // Same.
-    document.getElementById("framezuse" + curframe).innerHTML = '<img id="fu' + curframe + '" width="1280" height="960" src="' + frameuse + '"/>';
-    // More export
-    console.log(frame1);
-    // Debug
-    console.log("cur1: " + curframe);
-    // Debug
-    curframe = curframe + 1;
-    stillgo = stillgo + 1;
-    // Make current frame the next frame.
-    console.log("cur2: " + curframe)
-      // Debug
-    if (curframe >= 5) {
-      // if the current frame is now 5 or higher (needs to check for higher becuase the equal was changing the variable)
 
-      console.log("curif: " + curframe);
-      // Debug
-      curframe = 1;
-      // Set the current frame to 1 so preview can be updated accordingly.
-    }
+    // Preview the captured frame
+    QframePreview.insertAdjacentHTML('beforeend', '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
 
+    // Go to the next frame
+    curframe++;
   });
-  document.getElementById("download").addEventListener("click", function() {
-    // Check for button press.
-    var go = 0
+
+
+  // Download button
+  document.querySelector("#btn-download").addEventListener("click", function() {
+    var go = 0;
       // Setup
-    for (i = 0; i < framearr.length; i++) {
-      console.log("framearr: " + framearr)
+    for (var i = 0; i < framearr.length; i++) {
+      console.log("framearr: " + framearr);
       var frameprocess = framearr.length - go;
       console.log("frameprocess: " + frameprocess);
       var framesave = framearr[i];
