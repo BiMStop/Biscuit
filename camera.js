@@ -4,6 +4,7 @@ var fs     = require('fs'),
 // Variables to use later
 var curframe   = 1,
     framearr   = [],
+    onion      = true,
     streamOpts = { "video": true };
 
 
@@ -85,29 +86,19 @@ window.addEventListener("DOMContentLoaded", function() {
       });
       go = go - 1;
     }
-    /*var farem = document.getElementById("fu" + lastframe).src;
-    // Get source of hidden image.
-    console.log("farem: " + farem);
-    // Debug
-    var frames1 = farem.replace('data:image/jpeg;base64,', '');
-    // Convert to only being a base64 string.
-    console.log("frames1: " + frames1);
-    // Debug
-    var options = {
-      filename: 'frame' + lastframe
-    };
-    // Set filename, will be dynamic later.
-    var imageData = new Buffer(frames1, 'base64');
-    // Base64 image load.
-    base64.base64decoder(imageData, options, function(err, saved) {
-      if (err) {
-        console.log(err);
-      }
-      console.log(saved);
-    });
-    // Export image to filesystem.
-    var fs = require('fs');
-    // Require the filesystem to be accessable.*/
   });
+  document.querySelector("#btn-onion").addEventListener("click", function() {
+    if (onion){
+      console.log("onion: "+onion);
+      document.querySelector("#canvas").style.opacity = "0";
+      console.log(document.querySelector("#canvas").style.opacity);
+      onion = false;
+    }else {
+      console.log("onion: "+onion);
+      document.querySelector("#canvas").style.opacity = "0.5";
+      console.log(document.querySelector("#canvas").style.opacity);
+      onion = true;
+    }
+    });
 
 }, false);
