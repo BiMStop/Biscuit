@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", function() {
       canvas     = document.querySelector("#canvas"),
       context    = canvas.getContext("2d"),
       video      = document.getElementById("video"),
-      Qform      = document.querySelector("#form1");
+      QframePreview = document.querySelector("#area-frame-preview");
 
 
   function errBack(error) {
@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", function() {
     framearr.push(frameq);
 
     // Preview the captured frame
-    Qform.insertAdjacentHTML('beforeend', '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
+    QframePreview.insertAdjacentHTML('beforeend', '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
 
     // Go to the next frame
     curframe++;
@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
   // Download button
-  document.querySelector("#download").addEventListener("click", function() {
+  document.querySelector("#btn-download").addEventListener("click", function() {
     var go = 0;
       // Setup
     for (var i = 0; i < framearr.length; i++) {

@@ -45,7 +45,6 @@ button {
   border: 1px;
   color: #DDB05B;
   border-radius: 2px;
-  -moz-border-radius: 2px;
 }
 p {
     font-weight: 400;
@@ -135,10 +134,8 @@ nav ul li a {
   border-radius: 3px;
   -moz-border-radius: 3px;
 }
-.invisible {
-  position: absolute;
-  left: -99999px;
-}
+
+.invisible { display: none; }
 
 /*============
 =======CAPTURE
@@ -146,4 +143,11 @@ nav ul li a {
 
 #captureForm {
   margin: 0 auto;
+}
+
+#btn-download { display: block; }
+
+#area-frame-preview img {
+  display: inline-block;
+  margin: 0.5em;
 }

@@ -7,35 +7,37 @@
 
 <body>
   <nav>
-        <ul>
-            <img id="logo" src="biscuit.png" />
-            <h1 id="appTitle">Biscuit</h1>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="camera.html">Camera</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+    <ul>
+      <img id="logo" src="biscuit.png" />
+      <h1 id="appTitle">Biscuit</h1>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="camera.html">Camera</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
   <center>
-    <div class="invisible"><canvas id="canvasuse" width="1280" height="960"></canvas><div class="invisible" id="framezuse1"></div><div class="invisible" id="framezuse2"></div><div class="invisible" id="framezuse3"></div>
-  <div class="invisible" id="framezuse4"></div></div>
-    <div id="form1">
+    <div class="invisible">
+      <canvas id="canvasuse" width="1280" height="960"></canvas>
+    </div>
+
+    <div id="captureForm">
       <video style="float: center;" id="video" width="320" height="240" autoplay></video>
       <canvas id="canvas" style="float: center;margin: 0 0 0 -325px;opacity: 0.5;" width="320" height="240"></canvas>
       <br>
       <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
       <br>
-      <h3>Frames</h3><button id="download">Download</button>
-      <div style="float: left;margin-left:71px;" id="framez1"></div>
-      <div style="float: left;margin-left:6px;" id="framez2"></div>
-      <div style="float: left;margin-left:6px;" id="framez3"></div>
-      <div style="float: left;margin-right:71px;margin-left:6px;" id="framez4"></div>
+      <div id="area-frame-preview">
+        <h3>Frames</h3>
+        <button id="btn-download">Download</button>
+      </div>
     </div>
-    <script src="instantclick.min.js" data-no-instant></script>
-    <script data-no-instant>
-      InstantClick.init();
-    </script>
   </center>
 
+  <script src="instantclick.min.js" data-no-instant></script>
+  <script data-no-instant>
+    InstantClick.init();
+  </script>
   <script src="camera.js" data-no-instant></script>
 </body>
 </html>
