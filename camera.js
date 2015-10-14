@@ -2,19 +2,19 @@ var fs     = require('fs'),
     base64 = require('node-base64-image');
 
 // Variables to use later
-var stillgo  = 1,
-    curframe = 1,
-    framearr = [];
+var curframe   = 1,
+    framearr   = [],
+    streamOpts = { "video": true };
 
 
 window.addEventListener("DOMContentLoaded", function() {
-  // Grab elements, create settings, etc.
+  // Connect to the required DOM elements
   var canvasuse  = document.querySelector("#canvasuse"),
       contextuse = canvasuse.getContext("2d"),
       canvas     = document.querySelector("#canvas"),
       context    = canvas.getContext("2d"),
       video      = document.getElementById("video"),
-      videoObj   = { "video": true };
+      Qform      = document.querySelector("#form1");
 
 
   function errBack(error) {
@@ -24,61 +24,44 @@ window.addEventListener("DOMContentLoaded", function() {
   // Display the video stream
   // Standardized version
   if (navigator.getUserMedia) {
-    navigator.getUserMedia(videoObj, function(stream) {
+    navigator.getUserMedia(streamOpts, function(stream) {
       video.src = stream;
       video.play();
     }, errBack);
 
     // WebKit-prefixed version
   } else if (navigator.webkitGetUserMedia) {
-    navigator.webkitGetUserMedia(videoObj, function(stream) {
+    navigator.webkitGetUserMedia(streamOpts, function(stream) {
       video.src = window.URL.createObjectURL(stream);
       video.play();
     }, errBack);
   }
-  // Trigger photo take
-  document.getElementById("snap").addEventListener("click", function() {
+
+
+  // Take picture button
+  document.querySelector("#snap").addEventListener("click", function() {
+    // Draw the frame for both preview and export
     context.drawImage(video, 0, 0, 320, 240);
-    // Make grab image from video. Grab for preview
     contextuse.drawImage(video, 0, 0, 1280, 960);
-    // Grab for export.
-    eval('var frame' + curframe + ' = canvas.toDataURL("image/jpeg")');
-    // Get Image URL
-    eval('var frameuse' + curframe + ' = canvasuse.toDataURL("image/jpeg")');
-    // Get Image URL for export
-    var frameuse = canvasuse.toDataURL("image/jpeg");
-    eval('var frame = ' + "frame" + curframe + '');
-    // Set current frame based on variable that changes aka variable variable.... ha. haha.
-    var frameq = frameuse.replace('data:image/jpeg;base64,', '');
+
+    // Convert the frame to JPG format
+    var frame = canvas.toDataURL("image/jpeg"),
+        frameuse = canvasuse.toDataURL("image/jpeg"),
+        frameq = frameuse.replace('data:image/jpeg;base64,', '');
+
+    // Store the frame for saving later
     framearr.push(frameq);
-    // Add current frame to frame array.
-    document.getElementById("framez" + curframe).innerHTML = '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>';
-    // Preview
-    eval('var frameuse = ' + "frameuse" + curframe + '');
-    // Same.
-    document.getElementById("framezuse" + curframe).innerHTML = '<img id="fu' + curframe + '" width="1280" height="960" src="' + frameuse + '"/>';
-    // More export
-    console.log(frame1);
-    // Debug
-    console.log("cur1: " + curframe);
-    // Debug
-    curframe = curframe + 1;
-    stillgo = stillgo + 1;
-    // Make current frame the next frame.
-    console.log("cur2: " + curframe);
-      // Debug
-    if (curframe >= 5) {
-      // if the current frame is now 5 or higher (needs to check for higher becuase the equal was changing the variable)
 
-      console.log("curif: " + curframe);
-      // Debug
-      curframe = 1;
-      // Set the current frame to 1 so preview can be updated accordingly.
-    }
+    // Preview the captured frame
+    Qform.insertAdjacentHTML('beforeend', '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
 
+    // Go to the next frame
+    curframe++;
   });
-  document.getElementById("download").addEventListener("click", function() {
-    // Check for button press.
+
+
+  // Download button
+  document.querySelector("#download").addEventListener("click", function() {
     var go = 0;
       // Setup
     for (var i = 0; i < framearr.length; i++) {
