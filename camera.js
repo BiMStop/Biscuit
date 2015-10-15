@@ -3,7 +3,7 @@ Setup
 */
 
 var fs = require('fs'),
-  base64 = require('node-base64-image');
+  base64 = require('lib/node-base64-image');
 
 // Variables to use later
 var curframe = 1,
