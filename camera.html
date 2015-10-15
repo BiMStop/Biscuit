@@ -22,12 +22,15 @@
     </div>
 
     <div id="captureForm">
-      <video style="float: center;" id="video" width="320" height="240" autoplay></video>
+      <video style="float: center;opacity: 1;" id="video" width="320" height="240" autoplay></video>
       <canvas id="canvas" style="float: center;margin: 0 0 0 -325px;opacity: 0.5;" width="320" height="240"></canvas>
+      <img style="float: center;margin: 0 0 0 -325px;opacity: 0;" id="playback" src="#" width="320" height="240"></img>
       <br>
       <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
       <br>
       <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-onion">Toggle Onion Skinning</button>
+      <br>
+      <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-playback">Playback</button>&nbsp;Framerate:&nbsp;<input value="24" id="framerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
       <br>
       <div id="area-frame-preview">
         <h3>Frames</h3>

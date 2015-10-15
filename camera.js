@@ -1,21 +1,48 @@
-var fs     = require('fs'),
-    base64 = require('node-base64-image');
+/*
+Setup
+*/
+
+var fs = require('fs'),
+  base64 = require('node-base64-image');
 
 // Variables to use later
-var curframe   = 1,
-    framearr   = [],
-    onion      = true,
-    streamOpts = { "video": true };
+var curframe = 1,
+  framearr = [],
+  onion = true,
+  pbarr = [],
+  cur = 0,
+  pb,
+  streamOpts = {
+    "video": true
+  };
 
+function playback() {
+  document.querySelector("#playback").src = pbarr[cur];
+  console.log(pbarr[cur]);
+  console.log(cur);
+  cur = cur + 1;
+  if (cur >= pbarr.length) {
+    cur = 0;
+    clearInterval(pb);
+    document.querySelector("#playback").style.opacity = "0";
+    document.querySelector("#video").style.opacity = "1";
+    if (onion = true){
+    document.querySelector("#canvas").style.opacity = "0.5";
+  }else {
+    cur = 0;
+    document.querySelector("#canvas").style.opacity = "0";
+  }
+  }
+}
 
 window.addEventListener("DOMContentLoaded", function() {
   // Connect to the required DOM elements
-  var canvasuse     = document.querySelector("#canvasuse"),
-      contextuse    = canvasuse.getContext("2d"),
-      canvas        = document.querySelector("#canvas"),
-      context       = canvas.getContext("2d"),
-      video         = document.getElementById("video"),
-      QframePreview = document.querySelector("#area-frame-preview");
+  var canvasuse = document.querySelector("#canvasuse"),
+    contextuse = canvasuse.getContext("2d"),
+    canvas = document.querySelector("#canvas"),
+    context = canvas.getContext("2d"),
+    video = document.getElementById("video"),
+    QframePreview = document.querySelector("#area-frame-preview");
 
 
   function errBack(error) {
@@ -46,12 +73,14 @@ window.addEventListener("DOMContentLoaded", function() {
     contextuse.drawImage(video, 0, 0, 1280, 960);
 
     // Convert the frame to JPG format
-    var frame    = canvas.toDataURL("image/jpeg"),
-        frameuse = canvasuse.toDataURL("image/jpeg"),
-        frameq   = frameuse.replace('data:image/jpeg;base64,', '');
+    var frame = canvas.toDataURL("image/jpeg"),
+      frameuse = canvasuse.toDataURL("image/jpeg"),
+      frameq = frameuse.replace('data:image/jpeg;base64,', '');
 
     // Store the frame for saving later
     framearr.push(frameq);
+    // Store frame for playback
+    pbarr.push(frame);
 
     // Preview the captured frame
     QframePreview.insertAdjacentHTML('beforeend', '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
@@ -64,7 +93,7 @@ window.addEventListener("DOMContentLoaded", function() {
   // Download button
   document.querySelector("#btn-download").addEventListener("click", function() {
     var go = 0;
-      // Setup
+    // Setup
     for (var i = 0; i < framearr.length; i++) {
       console.log("framearr: " + framearr);
       var frameprocess = framearr.length - go;
@@ -87,18 +116,29 @@ window.addEventListener("DOMContentLoaded", function() {
       go = go - 1;
     }
   });
+  // Toggle onion skinning
   document.querySelector("#btn-onion").addEventListener("click", function() {
-    if (onion){
-      console.log("onion: "+onion);
+    if (onion) {
+      console.log("onion: " + onion);
       document.querySelector("#canvas").style.opacity = "0";
       console.log(document.querySelector("#canvas").style.opacity);
       onion = false;
-    }else {
-      console.log("onion: "+onion);
+    } else {
+      console.log("onion: " + onion);
       document.querySelector("#canvas").style.opacity = "0.5";
       console.log(document.querySelector("#canvas").style.opacity);
       onion = true;
     }
-    });
+  });
+  // Start playback
+  document.querySelector("#btn-playback").addEventListener("click", function() {
+    clearInterval(pb);
+    var fr = document.querySelector("#framerate").value;
+    document.querySelector("#playback").style.opacity = "1";
+    document.querySelector("#video").style.opacity = "0";
+    document.querySelector("#canvas").style.opacity = "0";
+    fr = parseInt(fr);
+    pb = setInterval("playback()", (1000/fr));
+  });
 
 }, false);
