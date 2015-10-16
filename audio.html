@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <title>Biscuit | Audio</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li class="no-hover">
+        <img id="logo" width="40" height="40" src="biscuit.png" />
+      </li>
+      <li class="no-hover">
+        <h1 id="appTitle">Biscuit</h1>
+      </li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="camera.html">Camera</a></li>
+      <li><a href="audio.html">Audio</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+  <center>
+
+    <button onclick="startRecording(this);">record</button>
+    <button onclick="stopRecording(this);" disabled>stop</button>
+
+    <h2>Recordings</h2>
+    <ul id="recordingslist"></ul>
+
+    <h2>Status</h2>
+    <pre id="log"></pre>
+  </center>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <script>
+    var audio_context;
+    var recorder;
+
+    function startUserMedia(stream) {
+      var input = audio_context.createMediaStreamSource(stream);
+
+      recorder = new Recorder(input, {
+        numChannels: 1
+      });
+    }
+
+    function startRecording(button) {
+      recorder && recorder.record();
+      button.disabled = true;
+      button.nextElementSibling.disabled = false;
+      log.innerHTML = "\n" + "Recording";
+    }
+
+    function stopRecording(button) {
+      recorder && recorder.stop();
+      button.disabled = true;
+      button.previousElementSibling.disabled = false;
+
+      // create WAV download link using audio data blob
+      createDownloadLink();
+
+      recorder.clear();
+    }
+
+    function createDownloadLink() {
+      recorder && recorder.exportWAV(function(blob) {
+
+      });
+    }
+
+    window.onload = function init() {
+      try {
+        // webkit shim
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        navigator.getUserMedia = (navigator.getUserMedia ||
+          navigator.webkitGetUserMedia ||
+          navigator.mozGetUserMedia ||
+          navigator.msGetUserMedia);
+        window.URL = window.URL || window.webkitURL;
+
+        audio_context = new AudioContext;
+      } catch (e) {
+        alert('No web audio support in this browser!');
+      }
+
+      navigator.getUserMedia({
+        audio: true
+      }, startUserMedia, function(e) {});
+    };
+  </script>
+
+  <script src="lib/js/jquery-1.11.0.min.js"></script>
+  <script src="audio.js"></script>
+</body>
+
+</html>

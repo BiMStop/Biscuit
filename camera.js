@@ -67,7 +67,6 @@ module.exports = {
 Directly got base64 decorder
 */
 var fs = require('fs');
-    requirejs(["lib/base64image"],function(base64image){});
 
 
 // Variables to use later
@@ -148,7 +147,7 @@ window.addEventListener("DOMContentLoaded", function() {
     pbarr.push(frame);
 
     // Preview the captured frame
-    QframePreview.insertAdjacentHTML('beforeend', '<img id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
+    QframePreview.insertAdjacentHTML('beforeend', '<img class="frame" id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
 
     // Go to the next frame
     curframe++;
@@ -204,6 +203,13 @@ window.addEventListener("DOMContentLoaded", function() {
     document.querySelector("#canvas").style.opacity = "0";
     fr = parseInt(fr);
     pb = setInterval("playback()", (1000/fr));
+  });
+  document.querySelector("img").addEventListener("click", function() {
+    var selframe = document.querySelector(".frame").id;
+    document.querySelector(".frame").src = "";
+    document.querySelector(".frame").width = 0;
+    document.querySelector(".frame").height = 0;
+    framearr.splice(selframe);
   });
 
 }, false);
