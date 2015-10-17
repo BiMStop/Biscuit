@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <title>Biscuit | Write</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li class="no-hover">
+        <img id="logo" width="40" height="40" src="biscuit.png" />
+      </li>
+      <li class="no-hover">
+        <h1 id="appTitle">Biscuit</h1>
+      </li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="camera.html">Camera</a></li>
+      <li><a href="audio.html">Audio</a></li>
+      <li><a href="write.html">Write</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <center>
+    <textarea style="width:600px;height:400px;margin-top:18px;border: 1px solid #DDB05B;border-radius:2px;" id="write"></textarea>
+    <br>
+    <div id="save-div" style="margin-top:2px;">
+      <button id="btn-save" class="button">Save</button>&nbsp;Filename&nbsp;
+      <input type="text" id="name">
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </center>
+
+  <script src="instantclick.min.js" data-no-instant></script>
+  <script data-no-instant>
+    InstantClick.init();
+  </script>
+  <script src="write.js" data-no-instant></script>
+</body>
+
+</html>

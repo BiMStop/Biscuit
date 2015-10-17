@@ -55,6 +55,7 @@ var base64decoder = function (imageBuffer, options, callback) {
     fs.writeFile(options.filename + '.jpg', imageBuffer, 'base64', function (err) {
       if (err) { return callback(err); }
       return callback(null, 'Image saved successfully to disk!');
+      alert('Frames Successfully Exported!')
     });
   }
 };
