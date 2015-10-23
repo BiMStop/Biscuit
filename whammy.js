@@ -215,7 +215,7 @@ window.Whammy = (function(){
 			if (i >= 3) {
 				cues.data[i-3].data[1].data[1].data = position;
 			}
-			var data = generateEBML([segment.data[i]], outputAsArray);
+			var data = generateEBML([], outputAsArray);
 			position += data.size || data.byteLength || data.length;
 			if (i != 2) { // not cues
 				//Save results to avoid having to encode everything twice
@@ -300,10 +300,6 @@ window.Whammy = (function(){
 			if(typeof data == 'object') data = generateEBML(data, outputAsArray);
 			if(typeof data == 'number') data = ('size' in json[i]) ? numToFixedBuffer(data, json[i].size) : bitsToBuffer(data.toString(2));
 			if(typeof data == 'string') data = strToBuffer(data);
-
-			if(data.length){
-				var z = z;
-			}
 
 			var len = data.size || data.byteLength || data.length;
 			var zeroes = Math.ceil(Math.ceil(Math.log(len)/Math.log(2))/8);
