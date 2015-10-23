@@ -34,9 +34,10 @@
       <br>
       <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-playback">Playback</button>&nbsp;Framerate:&nbsp;<input value="24" id="framerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
       <br>
-      <div id="area-frame-preview">
         <h3>Frames</h3>
+        <button class="button" id="btn-export">Export Video</button>&nbsp;Framerate:&nbsp;<input value="24" id="exframerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
         <button class="button" id="btn-download">Download Frames</button>
+        <div id="area-frame-preview">
       </div>
     </div>
   </center>
@@ -44,8 +45,6 @@
   <script src="instantclick.min.js" data-no-instant></script>
   <script data-no-instant>InstantClick.init();</script>
   <script src="camera.js" data-no-instant></script>
-  <script src="export.js" data-no-instant></script>
-  <script src="shortcuts.js" data-no-instant></script>
   <script src="blob-util.js"></script>
   <script src="whammy.js" data-no-instant></script>
 </body>

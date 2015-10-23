@@ -229,19 +229,13 @@ window.Whammy = (function(){
 	// sums the lengths of all the frames and gets the duration, woo
 
 	function checkFrames(frames){
-		var width = frames[0].width,
-			height = frames[0].height,
-			duration = frames[0].duration;
+			var duration = frames[0].duration;
 		for(var i = 1; i < frames.length; i++){
-			if(frames[i].width != width) throw "Frame " + (i + 1) + " has a different width";
-			if(frames[i].height != height) throw "Frame " + (i + 1) + " has a different height";
 			if(frames[i].duration < 0 || frames[i].duration > 0x7fff) throw "Frame " + (i + 1) + " has a weird duration (must be between 0 and 32767)";
 			duration += frames[i].duration;
 		}
 		return {
-			duration: duration,
-			width: width,
-			height: height
+			duration: duration
 		};
 	}
 
@@ -418,18 +412,14 @@ window.Whammy = (function(){
 		var frame_start = VP8.indexOf('\x9d\x01\x2a'); //A VP8 keyframe starts with the 0x9d012a header
 		for(var i = 0, c = []; i < 4; i++) c[i] = VP8.charCodeAt(frame_start + 3 + i);
 
-		var width, horizontal_scale, height, vertical_scale, tmp;
+		var horizontal_scale, vertical_scale, tmp;
 
 		//the code below is literally copied verbatim from the bitstream spec
 		tmp = (c[1] << 8) | c[0];
-		width = tmp & 0x3FFF;
 		horizontal_scale = tmp >> 14;
 		tmp = (c[3] << 8) | c[2];
-		height = tmp & 0x3FFF;
 		vertical_scale = tmp >> 14;
 		return {
-			width: width,
-			height: height,
 			data: VP8,
 			riff: riff
 		}
