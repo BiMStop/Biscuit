@@ -277,9 +277,16 @@ document.querySelector("#btn-export").addEventListener("click", function() {
   var output = encoder.compile();
   var url = (window.webkitURL || window.URL).createObjectURL(output);
   console.log(url);
-  blobUtil.blobToArrayBuffer(url).then(function (arrayBuff) {
-    fs.writeFile('export.webm', arrayBuff, function(err) {});
-});
+  var orig = window.URL;
+  console.log("orig "+orig);
+  console.log("output "+output);
+  var url = url.replace('file%3A///', '');
+  console.log("new "+url);
+var fileReader = new FileReader();
+fileReader.onload = function() {};
+var save = fileReader.readAsBinaryString(output);
+fs.writeFile('export.webm', save, function(err) {});
+console.log(save);
 });
 
 /*
