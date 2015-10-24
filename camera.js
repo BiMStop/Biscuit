@@ -2,10 +2,7 @@
 Setup
 */
 var fs = require('fs');
-var reader = new FileReader();
-reader.onload = function() {
-console.log("Reader Loaded!")
-}
+var getPixels = require("get-pixels")
 // Variables to use later
 var curframe = 1,
   framearr = [],
@@ -274,6 +271,13 @@ document.querySelector("#snap").addEventListener("click", function() {
 document.querySelector("#btn-export").addEventListener("click", function() {
   var frexst = document.querySelector("#exframerate").value
   var frex = parseInt(frexst);
+  getPixels(framexvid[0], function(err, pixels) {
+  if(err) {
+    console.log("Bad image path")
+    return
+  }
+  console.log("got pixels", pixels.shape.slice())
+})
 });
 
 /*
