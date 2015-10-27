@@ -2,10 +2,14 @@
 Setup
 */
 var fs = require('fs');
-var getPixels = require("get-pixels")
+var ffmpeg = require('ffmpeg-static');
+var dialog = require('remote').require('dialog')
+require('shelljs/global');
+var tmp = tempdir();
 // Variables to use later
 var curframe = 1,
   framearr = [],
+  framez = '-i ',
   onion = true,
   pbarr = [],
   cur = 0,
@@ -235,11 +239,13 @@ function takeframe() {
   context.drawImage(video, 0, 0, 320, 240);
   // Convert the frame to JPG format
   var frame = canvas.toDataURL("image/jpeg");
-
   // Preview the captured frame
   QframePreview.insertAdjacentHTML('beforeend', '<img class="frame" id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
   // Stuff after to not slow down frame preview
   contextuse.drawImage(video, 0, 0, 1280, 960);
+  var framexvid = contextuse.getImageData(0,0,1280,960);
+  // Store frame for video export
+  exarr.push(framexvid);
   // Convert the frame to JPG format
   var frameuse = canvasuse.toDataURL("image/jpeg"),
     frameq = frameuse.replace('data:image/jpeg;base64,', '');
@@ -260,24 +266,48 @@ Setup
   streamOpts = {
     "video": true
   };
-document.querySelector("#snap").addEventListener("click", function() {
-  var framexvid = canvasuse.toDataURL("image/jpeg");
-  // Store frame for video export
-  exarr.push(framexvid);
-
-  // Go to the next frame
-  curframe++;
-});
 document.querySelector("#btn-export").addEventListener("click", function() {
+  mkdir(tmp+'Biscuit');
   var frexst = document.querySelector("#exframerate").value
   var frex = parseInt(frexst);
-  getPixels(framexvid[0], function(err, pixels) {
-  if(err) {
-    console.log("Bad image path")
-    return
+  console.log(frex);
+  console.log(ffmpeg.path);
+  var path = '"'+ffmpeg.path+'"';
+  var go = 0;
+  var frameprocess = 1
+  var add = '0000';
+  // Setup
+  for (var i = 0; i < framearr.length; i++) {
+    if (frameprocess > 9 && frameprocess < 99){
+      var add = '000';
+    }
+    if (frameprocess > 99 && frameprocess < 999){
+      var add = '00';
+    }
+    if (frameprocess > 999 && frameprocess < 9999){
+      var add = '0';
+    }
+    if (frameprocess > 9999 && frameprocess < 99999){
+      var add = '';
+    }
+    var framesave = framearr[i];
+    var frame64 = framesave.replace('data:image/jpeg;base64,', '');
+    var options = {
+      filename: tmp+'Biscuit/frame1'+add+frameprocess
+    };
+    console.log(tmp+'Biscuit/frame1'+add+frameprocess);
+    ext = '.jpg';
+    var imageData = new Buffer(frame64, 'base64');
+    base64decoder(imageData, options, function(err, saved) {});
+    frameprocess++
   }
-  console.log("got pixels", pixels.shape.slice())
-})
+  dialog.showSaveDialog(function(pathz) {
+    exec(path+' -pattern_type glob -i "'+tmp+'Biscuit/frame*.jpg" -framerate '+frex+' -r '+frex+' -s 1280x920 "'+pathz+'"', function(code, output) {
+    console.log('Program output:', output);
+    console.log('Done');
+    rm('-rf', tmp+'Biscuit/*');
+  });
+  });
 });
 
 /*
