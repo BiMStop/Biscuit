@@ -356,3 +356,6 @@ Mousetrap.bind('r', function() {
 Mousetrap.bind('p', function() {
     playback();
 });
+Mousetrap.bind('command+shift+0', function() {
+    mainWindow.openDevTools();
+});
