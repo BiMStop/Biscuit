@@ -24,7 +24,7 @@
   </nav>
 
   <center>
-    <textarea style="width:600px;height:400px;margin-top:18px;border: 1px solid #DDB05B;border-radius:2px;" id="write"></textarea>
+    <div id="colordiv" style="width:790px;color:#000000;background-color:#FFFFFF;"><textarea style="width:790px;height:500px;margin-top:18px;border: 1px solid #DDB05B;border-radius:2px;text-color:#000000" id="write"></textarea></div>
     <br>
     <div id="save-div" style="margin-top:2px;">
       <button id="btn-save" class="button">Save</button>&nbsp;Filename&nbsp;
@@ -36,13 +36,17 @@
     <br>
     <br>
   </center>
-
+  <script src="nicEdit.js" data-no-instant></script>
   <script src="instantclick.min.js" data-no-instant></script>
   <script data-no-instant>
     InstantClick.init();
   </script>
   <script src="shortcuts.js"></script>
-  <script>  Mousetrap.bind('command+shift+c', function() {
+  <script>
+  nicEditors.allTextAreas();
+  myNicEditor.addInstance('write');
+  bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+  Mousetrap.bind('command+shift+c', function() {
         window.location.href = "camera.html";
     });
     Mousetrap.bind('ctrl+shift+c', function() {
