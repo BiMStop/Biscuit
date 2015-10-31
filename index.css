@@ -2,6 +2,9 @@
   font-family: biscuit;
   src: url('Biscuit.ttf');
 }
+html {
+  background-color: #FFE3BB;
+}
 body {
   overflow-x: hidden;
   background: #FFE3BB;
@@ -11,15 +14,15 @@ body {
   margin: 0px;
   padding: 0px;
 }
-h2{
-    font-size: 1.5em;
-    margin: 0.83em 0;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
+h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
 }
-h3{
-    font-weight: bold;
-    font-family: biscuit;
+h3 {
+  font-weight: bold;
+  font-family: biscuit;
 }
 table {
   font-size: 17px;
@@ -28,8 +31,8 @@ a {
   text-decoration: none;
   color: #DDB05B;
 }
-a:hover{
-    text-decoration: underline;
+a:hover {
+  text-decoration: underline;
 }
 input {
   height: 22px;
@@ -44,11 +47,12 @@ button {
   border-radius: 2px;
 }
 p {
-    font-weight: 400;
+  font-weight: 400;
 }
-.bold{
-    font-weight: 700;
+.bold {
+  font-weight: 700;
 }
+
 /*=====================
 =========NAVIGATION BAR
 =======================*/
@@ -110,14 +114,14 @@ nav ul li a {
   border-radius: 4px;
 }
 .content {
-    overflow-x: hidden;
-    width: calc(100% - 70px);
-    max-width: 800px;
-    background-color: rgba(230, 230, 230, 0.3);
-    padding: 10px 10px 2em 60px;
-    border-radius: 10px;
-    margin: 0 auto;
-    font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
+  overflow-x: hidden;
+  width: calc(100% - 70px);
+  max-width: 800px;
+  background-color: rgba(230, 230, 230, 0.3);
+  padding: 10px 10px 2em 60px;
+  border-radius: 10px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
 }
 .title {
   overflow-x: hidden;
@@ -130,8 +134,9 @@ nav ul li a {
   border-radius: 3px;
   -moz-border-radius: 3px;
 }
-
-.invisible { display: none; }
+.invisible {
+  display: none;
+}
 
 /*============
 =======CAPTURE
@@ -140,9 +145,9 @@ nav ul li a {
 #captureForm {
   margin: 0 auto;
 }
-
-#btn-download { display: block; }
-
+#btn-download {
+  display: block;
+}
 #area-frame-preview img {
   display: inline-block;
   margin: 0.5em;

@@ -24,8 +24,8 @@
   </nav>
   <center>
 
-    <button class="button" onclick="startRecording(this);">record</button>
-    <button class="button" onclick="stopRecording(this);" disabled>stop</button>
+    <button class="button" style="width:50px;height:80px;margin-right:5px;" onclick="startRecording(this);">Start Recording</button>
+    <button class="button" style="width:50px;height:80px;margin-right:5px;" onclick="stopRecording(this);" disabled>Stop Recording</button>
 
     <h2>Recordings</h2>
     <ul id="recordingslist"></ul>
@@ -107,8 +107,8 @@
       }, startUserMedia, function(e) {});
     };
   </script>
-
-  <script src="lib/js/jquery-1.11.0.min.js"></script>
+  <script src="jquery.js"></script>
+  <script src="pagecontroller.js"></script>
   <script src="audio.js"></script>
   <script src="shortcuts.js"></script>
   <script>   Mousetrap.bind('command+shift+c', function() {
