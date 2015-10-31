@@ -4,10 +4,11 @@ $(document).ready(function() {
   $("a").click(function(event) {
     event.preventDefault();
     linkLocation = this.href;
-    $("body").fadeOut(1000, redirectPage);
+    $("body").fadeOut(2000, redirectPage);
   });
 
   function redirectPage() {
-    window.location = linkLocation;
+  if (location.href.indexOf('reload')==-1) location.replace(location.href+'?reload');
+  window.location = linkLocation;
   }
 });
