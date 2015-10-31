@@ -91,6 +91,9 @@ window.addEventListener("DOMContentLoaded", function() {
   // Download button
   document.querySelector("#btn-download").addEventListener("click", function() {
     var go = 0;
+    dialog.showOpenDialog({properties:[{openDirectory}]},function(pathz) {
+      var pathz = pathz;
+    });
     // Setup
     for (var i = 0; i < framearr.length; i++) {
       //console.log("framearr: " + framearr);
@@ -101,7 +104,7 @@ window.addEventListener("DOMContentLoaded", function() {
       var frame64 = framesave.replace('data:image/jpeg;base64,', '');
       //console.log("frame64: " + frame64);
       var options = {
-        filename: 'frame' + frameprocess
+        filename: pathz + 'frame' + frameprocess
       };
       ext = '.jpg';
       var imageData = new Buffer(frame64, 'base64');
