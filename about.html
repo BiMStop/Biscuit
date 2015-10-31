@@ -1,34 +1,82 @@
+<!DOCTYPE html>
 <html>
-<head>
-   <link rel="stylesheet" type="text/css" href="index.css">
-   <title>Biscuit | About</title>
-   <script src="camera.js" data-no-instant></script>
-    <script src="instantclick.min.js" data-no-instant></script>
-    <script data-no-instant>InstantClick.init();</script>
-</head>
-<body>
-    <nav>
-        <ul>
-            <img id="logo" src="biscuit.png" />
-            <h1 id="appTitle">Biscuit</h1>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="camera.html">Camera</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
-    <div class="content">
-        <h2>About Biscuit</h2>
-        <p>Biscuit is a free stop motion animation program created by the members of Bricks in Motion, a website devoted to the art of creating stop motion animation with LEGO bricks, commonly known as "brickfilms".</p>
-        <p>The name Biscuit was coined by Bricks in Motion member "Carousel" and stands for:<br/><span class="bold">B</span>ricks in Motion <span class="bold">I</span>mage <span class="bold">S</span>equencing and <span class="bold">C</span>apture <span class="bold">U</span>nit <span class="bold">I</span>ni<span class="bold">t</span>iative.</p>
-        <p>Please note that despite its name Biscuit is not currently associated with Bricks in Motion in any official capacity.</p>
-        <h2>Credits</h2>
-        <p>The following people have contributed to the creation of this version of Biscuit:</p>
-        <ul>
-            <li>"Lunears" - programming</li>
-            <li>"BoatsAreRockable" - programming</li>
-            <li>"Repelling Spider" - logo design</li>
 
-        </ul>
-    </div>
+<head>
+  <link rel="stylesheet" href="index.css">
+  <title>Biscuit | About</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li class="no-hover">
+        <img id="logo" width="40" height="40" src="biscuit.png" />
+      </li>
+      <li class="no-hover">
+        <h1 id="appTitle">Biscuit</h1>
+      </li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="camera.html">Camera</a></li>
+      <li><a href="audio.html">Audio</a></li>
+      <li><a href="write.html">About</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h2>About Biscuit</h2>
+    <p>Biscuit is a free stop motion animation program created by the members of Bricks in Motion, a website devoted to the art of creating stop motion animation with LEGO bricks, commonly known as "brickfilms".</p>
+    <p>The name Biscuit was coined by Bricks in Motion member "Carousel" and stands for:
+      <br/>
+      <span class="bold">B</span>ricks in Motion
+      <span class="bold">I</span>mage
+      <span class="bold">S</span>equencing and
+      <span class="bold">C</span>apture
+      <span class="bold">U</span>nit
+      <span class="bold">I</span>ni
+      <span class="bold">t</span>iative.</p>
+    <p>Please note that despite its name Biscuit is not currently associated with Bricks in Motion in any official capacity.</p>
+
+    <h2>Credits</h2>
+    <p>The following people have contributed to the creation of this version of Biscuit:</p>
+    <ul>
+      <li>"Lunears" - programming</li>
+      <li>"BoatsAreRockable" - programming</li>
+      <li>"Repelling Spider" - logo design</li>
+    </ul>
+  </div>
+
+  <script src="instantclick.min.js" data-no-instant></script>
+  <script data-no-instant>
+    InstantClick.init();
+  </script>
+  <script src="shortcuts.js"></script>
+  <script src="jquery.js"></script>
+  <script src="pagecontroller.js"></script>
+  <script>  Mousetrap.bind('command+shift+c', function() {
+        window.location.href = "camera.html";
+    });
+    Mousetrap.bind('ctrl+shift+c', function() {
+        window.location.href = "camera.html";
+    });
+    Mousetrap.bind('command+shift+h', function() {
+        window.location.href = "index.html";
+    });
+    Mousetrap.bind('ctrl+shift+h', function() {
+        window.location.href = "index.html";
+    });
+    Mousetrap.bind('command+shift+a', function() {
+        window.location.href = "audio.html";
+    });
+    Mousetrap.bind('ctrl+shift+a', function() {
+        window.location.href = "audio.html";
+    });
+    Mousetrap.bind('command+shift+w', function() {
+        window.location.href = "write.html";
+    });
+    Mousetrap.bind('ctrl+shift+w', function() {
+        window.location.href = "write.html";
+    });</script>
 </body>
+
 </html>
