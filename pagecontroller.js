@@ -40,7 +40,7 @@ function loadwrite() {
 function loadabout() {
   $("iframe").fadeOut(350);
   $("iframe").css("display", "none");
-  $('#iframe').attr('src', 'camera.html').load(function() {
+  $('#iframe').attr('src', 'about.html').load(function() {
     $("iframe").fadeIn(350);
   });
 }
