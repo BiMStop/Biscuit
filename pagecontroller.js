@@ -1,19 +1,28 @@
 $(document).ready(function() {
-  $("div.page").css("display", "none");
-  $("div.page").fadeIn(100);
-  $("a").click(function(event) {
-    event.preventDefault();
-    linkLocation = this.href;
-    console.log(this.href);
-    $("div.page").fadeOut(100, redirectPage);
-  });
-
-  function redirectPage() {
-    $.ajax({
-      url: "camera.html",
-      context: document.body
-    }).done(function() {
-      $( this ).addClass( "done" );
-    });
-  }
+  $("body").fadeIn(100);
 });
+function loadcamera(){
+  $("iframe").fadeOut(100);
+  $('#iframe1').attr('src','camera.html' );
+  $("iframe").fadeIn(100);
+}
+function loadhome(){
+  $("iframe").fadeOut(100);
+  $('#iframe1').attr('src','indexc.html' );
+  $("iframe").fadeIn(100);
+}
+function loadaudio(){
+  $("iframe").fadeOut(100);
+  $('#iframe1').attr('src','audio.html' );
+  $("iframe").fadeIn(100);
+}
+function loadwrite(){
+  $("iframe").fadeOut(100);
+  $('#iframe1').attr('src','write.html' );
+  $("iframe").fadeIn(100);
+}
+function loadabout(){
+  $("iframe").fadeOut(100);
+  $('#iframe1').attr('src','camera.html' );
+  $("iframe").fadeIn(100);
+}

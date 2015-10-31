@@ -4,6 +4,7 @@
 }
 html {
   background-color: #FFE3BB;
+  height: 100%;
 }
 body {
   overflow-x: hidden;
@@ -13,6 +14,16 @@ body {
   font-size: 17px;
   margin: 0px;
   padding: 0px;
+  height: 100%;
+  width: 100%;
+}
+iframe {
+  margin: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 h2 {
   font-size: 1.5em;
@@ -86,7 +97,7 @@ nav ul li:not(.no-hover):hover {
   background-color: rgba(170, 122, 74, 0.4);
 }
 nav ul li a {
-  padding: 22px 20px 23px 10px;
+  padding: 12px 20px 6px 10px;
   margin: 0;
   display: block;
   border-left: 1px solid rgb(166, 119, 72);
