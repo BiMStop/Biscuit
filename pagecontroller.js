@@ -1,14 +1,21 @@
 $(document).ready(function() {
-  $("body").css("display", "none");
-  $("body").fadeIn(2000);
+  $("div.page").css("display", "none");
+  $("div.page").fadeIn(100);
   $("a").click(function(event) {
     event.preventDefault();
     linkLocation = this.href;
-    $("body").fadeOut(2000, redirectPage);
+    $("div.page").fadeOut(100, redirectPage);
   });
 
   function redirectPage() {
-  if (location.href.indexOf('reload')==-1) location.replace(location.href+'?reload');
-  window.location = linkLocation;
+  var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (xhttp.readyState == 4 && xhttp.status == 200) {
+    document.querySelector("#page").innerHTML = xhttp.responseText;
+  }
+}
+xhttp.open("GET", linkLocation, true);
+xhttp.send();
+}
   }
 });
