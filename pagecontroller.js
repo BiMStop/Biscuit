@@ -8,14 +8,13 @@ $(document).ready(function() {
   });
 
   function redirectPage() {
-  var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-  if (xhttp.readyState == 4 && xhttp.status == 200) {
-    document.querySelector("#page").innerHTML = xhttp.responseText;
-  }
-}
-xhttp.open("GET", linkLocation, true);
-xhttp.send();
-}
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (xhttp.readyState == 4 && xhttp.status == 200) {
+        document.querySelector("#page").innerHTML = xhttp.responseText;
+      }
+    }
+    xhttp.open("GET", linkLocation, true);
+    xhttp.send();
   }
 });
