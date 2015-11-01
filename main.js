@@ -1,5 +1,8 @@
 var app = require('app'); // Module to control application life.
 var BrowserWindow = require('browser-window'); // Module to create native browser window.
+var fs = require('fs');
+require('shelljs/global');
+var tmp = tempdir();
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -10,6 +13,9 @@ var mainWindow = null;
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
   app.quit();
+  fs.unlink(tmp+'Biscuit/curframe.biscuit', f);
+  fs.unlink(tmp+'Biscuit/pbarr.biscuit', f);
+  fs.unlink(tmp+'Biscuit/framearr.biscuit', f);
 });
 
 // This method will be called when Electron has finished
