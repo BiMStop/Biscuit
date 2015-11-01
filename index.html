@@ -48,7 +48,9 @@
             extensions: ['bpr']
           }]},function(pathzz) {
             var projectname = pathzz.replace('.bpr','');
-            fs.writeFile(pathzz, projectname, function(err) {
+            projectname = projectname.replace(/(.+)\//i,'');
+            console.log(projectname);
+            fs.writeFile(pathzz, 'projectname:'+projectname, function(err) {
               console.log(err);
             });
           });
