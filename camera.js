@@ -40,10 +40,10 @@ function playback() {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-  fs.readFile('framearr.biscuit', function(err, data) {
+  fs.readFile(tmp+'Biscuit/framearr.biscuit', function(err, data) {
     var framearr = data;
   });
-  fs.readFile('pbarr.biscuit', function(err, data) {
+  fs.readFile(tmp+'Biscuit/pbarr.biscuit', function(err, data) {
     var pbarr = data;
   });
   // blog-util https://www.npmjs.com/package/blob-util
@@ -81,8 +81,8 @@ window.addEventListener("DOMContentLoaded", function() {
     framearr.push(frameq);
     // Store frame for playback
     pbarr.push(frame);
-    fs.writeFile('framearr.biscuit', framearr, function(err) {});
-    fs.writeFile('pbarr.biscuit', pbarr, function(err) {});
+    fs.writeFile(tmp+'Biscuit/framearr.biscuit', framearr, function(err) {});
+    fs.writeFile(tmp+'Biscuit/pbarr.biscuit', pbarr, function(err) {});
 
     // Store frame for video export
     // Go to the next frame
