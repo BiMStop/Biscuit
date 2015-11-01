@@ -25,17 +25,34 @@
       <li><a href="#" onclick="loadabout();">About</a></li>
     </ul>
   </nav>
-  <iframe id="iframe" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto" src="indexc.html"></iframe>
+  <div class="content">
+    <h2>Welcome to Biscuit!</h2>
+    <h3>A free stop motion program created by the members of Bricks in Motion.</h3>
+    <a href="#" id="start">Begin a new project</a>
+  </div>
+  <iframe id="iframe" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto" src=""></iframe>
   <script src="pagecontroller.js"></script>
   <script src="message.js"></script>
   <script>
-  document.querySelector("#start").addEventListener("click", function() {
-    dhtmlx.modalbox({
-        title:"New Project",
-        text: "<h2>Project Name</h2>",
-        buttons:["Start"],
+    require('shelljs/global');
+    var dialog = require('remote').require('dialog')
+    var fs = require('fs');
+    document.querySelector("#start").addEventListener("click", function() {
+      startproject();
     });
-  });
+  </script>
+  <script>
+    function startproject() {
+      dialog.showSaveDialog({filters: [{
+            name: 'Biscuit Project File',
+            extensions: ['bpr']
+          }]},function(pathzz) {
+            var projectname = pathzz.replace('.bpr','');
+            fs.writeFile(pathzz, projectname, function(err) {
+              console.log(err);
+            });
+          });
+        }
   </script>
 </body>
 
