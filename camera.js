@@ -1,11 +1,13 @@
 /*
 Setup
 */
+var require = parent.require;
+console.log('camera.js loaded!')
 var fs = require('fs');
 var ffmpeg = require('ffmpeg-static');
 var dialog = require('remote').require('dialog')
 require('shelljs/global');
-var tmp = tempdir();
+var tmp = parent.tempdir();
 // Variables to use later
 var curframe = 1,
   framearr = [],
@@ -153,6 +155,49 @@ window.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".frame").height = 0;
     framearr.splice(selframe);
   });
+  document.getElementById("#btn-export").addEventListener("click", function() {
+    mkdir(tmp+'Biscuit');
+    var frexst = document.querySelector("#exframerate").value
+    var frex = parseInt(frexst);
+    console.log(frex);
+    console.log(ffmpeg.path);
+    var path = '"'+ffmpeg.path+'"';
+    var go = 0;
+    var frameprocess = 1
+    var add = '0000';
+    // Setup
+    for (var i = 0; i < framearr.length; i++) {
+      if (frameprocess > 9 && frameprocess < 99){
+        var add = '000';
+      }
+      if (frameprocess > 99 && frameprocess < 999){
+        var add = '00';
+      }
+      if (frameprocess > 999 && frameprocess < 9999){
+        var add = '0';
+      }
+      if (frameprocess > 9999 && frameprocess < 99999){
+        var add = '';
+      }
+      var framesave = framearr[i];
+      var frame64 = framesave.replace('data:image/jpeg;base64,', '');
+      var options = {
+        filename: tmp+'Biscuit/frame1'+add+frameprocess
+      };
+      console.log(tmp+'Biscuit/frame1'+add+frameprocess);
+      ext = '.jpg';
+      var imageData = new Buffer(frame64, 'base64');
+      base64decoder(imageData, options, function(err, saved) {});
+      frameprocess++
+    }
+    dialog.showSaveDialog(function(pathz) {
+      exec(path+' -pattern_type glob -i "'+tmp+'Biscuit/frame*.jpg" -framerate '+frex+' -r '+frex+' -s 1280x920 "'+pathz+'"', function(code, output) {
+      console.log('Program output:', output);
+      console.log('Done');
+      rm('-rf', tmp+'Biscuit/*');
+    });
+    });
+  });
 
 }, false);
 
@@ -223,10 +268,10 @@ var base64decoder = function(imageBuffer, options, callback) {
   }
 };
 
-module.exports = {
+/*module.exports = {
   base64encoder: base64encoder,
   base64decoder: base64decoder
-};
+};*/
 
 /*
 Shortcut functions
@@ -264,49 +309,6 @@ Setup
   streamOpts = {
     "video": true
   };
-document.querySelector("#btn-export").addEventListener("click", function() {
-  mkdir(tmp+'Biscuit');
-  var frexst = document.querySelector("#exframerate").value
-  var frex = parseInt(frexst);
-  console.log(frex);
-  console.log(ffmpeg.path);
-  var path = '"'+ffmpeg.path+'"';
-  var go = 0;
-  var frameprocess = 1
-  var add = '0000';
-  // Setup
-  for (var i = 0; i < framearr.length; i++) {
-    if (frameprocess > 9 && frameprocess < 99){
-      var add = '000';
-    }
-    if (frameprocess > 99 && frameprocess < 999){
-      var add = '00';
-    }
-    if (frameprocess > 999 && frameprocess < 9999){
-      var add = '0';
-    }
-    if (frameprocess > 9999 && frameprocess < 99999){
-      var add = '';
-    }
-    var framesave = framearr[i];
-    var frame64 = framesave.replace('data:image/jpeg;base64,', '');
-    var options = {
-      filename: tmp+'Biscuit/frame1'+add+frameprocess
-    };
-    console.log(tmp+'Biscuit/frame1'+add+frameprocess);
-    ext = '.jpg';
-    var imageData = new Buffer(frame64, 'base64');
-    base64decoder(imageData, options, function(err, saved) {});
-    frameprocess++
-  }
-  dialog.showSaveDialog(function(pathz) {
-    exec(path+' -pattern_type glob -i "'+tmp+'Biscuit/frame*.jpg" -framerate '+frex+' -r '+frex+' -s 1280x920 "'+pathz+'"', function(code, output) {
-    console.log('Program output:', output);
-    console.log('Done');
-    rm('-rf', tmp+'Biscuit/*');
-  });
-  });
-});
 
 /*
 Mousetrap Source
