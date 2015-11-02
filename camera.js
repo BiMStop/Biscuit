@@ -155,6 +155,7 @@ window.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".frame").height = 0;
     framearr.splice(selframe);
   });
+  // Using getElementById becuase querySelector didn't want to work.
   document.getElementById("btn-export").addEventListener("click", function() {
     mkdir(tmp+'Biscuit');
     var frexst = document.querySelector("#exframerate").value
