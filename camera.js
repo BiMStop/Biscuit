@@ -99,8 +99,7 @@ window.addEventListener("DOMContentLoaded", function() {
   document.querySelector("#btn-download").addEventListener("click", function() {
     var go = 0;
     dialog.showOpenDialog({properties:['openDirectory']},function(pathz) {
-      var pathz = pathz;
-    });
+      pathz = pathz + '/';
     // Setup
     for (var i = 0; i < framearr.length; i++) {
       //console.log("framearr: " + framearr);
@@ -114,7 +113,7 @@ window.addEventListener("DOMContentLoaded", function() {
         filename: pathz + 'frame' + frameprocess
       };
       ext = '.jpg';
-      var imageData = new Buffer(frame64, 'base64');
+      var imageData = new parent.Buffer(frame64, 'base64');
       // Base64 image load.
       base64decoder(imageData, options, function(err, saved) {
         if (err) {
@@ -124,6 +123,7 @@ window.addEventListener("DOMContentLoaded", function() {
       });
       go = go - 1;
     }
+    });
   });
   // Toggle onion skinning
   document.querySelector("#btn-onion").addEventListener("click", function() {
