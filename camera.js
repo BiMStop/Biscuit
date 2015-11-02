@@ -155,7 +155,7 @@ window.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".frame").height = 0;
     framearr.splice(selframe);
   });
-  document.getElementById("#btn-export").addEventListener("click", function() {
+  document.getElementById("btn-export").addEventListener("click", function() {
     mkdir(tmp+'Biscuit');
     var frexst = document.querySelector("#exframerate").value
     var frex = parseInt(frexst);
