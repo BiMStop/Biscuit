@@ -3,9 +3,10 @@ Setup
 */
 var require = parent.require;
 console.log('camera.js loaded!')
-var fs = require('fs');
-var ffmpeg = require('ffmpeg-static');
-var dialog = require('remote').require('dialog')
+var fs = parent.require('fs');
+var ffmpeg = parent.require('ffmpeg-static');
+var dialog = require('remote').require('dialog');
+console.log(dialog);
 require('shelljs/global');
 var tmp = parent.tempdir();
 // Variables to use later
@@ -97,7 +98,7 @@ window.addEventListener("DOMContentLoaded", function() {
   // Download button
   document.querySelector("#btn-download").addEventListener("click", function() {
     var go = 0;
-    dialog.showOpenDialog({properties:[{openDirectory}]},function(pathz) {
+    dialog.showOpenDialog({properties:[{'openDirectory}']},function(pathz) {
       var pathz = pathz;
     });
     // Setup
@@ -157,7 +158,7 @@ window.addEventListener("DOMContentLoaded", function() {
   });
   // Using getElementById becuase querySelector didn't want to work.
   document.getElementById("btn-export").addEventListener("click", function() {
-    mkdir(tmp+'Biscuit');
+    parent.mkdir(tmp+'Biscuit');
     var frexst = document.querySelector("#exframerate").value
     var frex = parseInt(frexst);
     console.log(frex);
@@ -187,15 +188,15 @@ window.addEventListener("DOMContentLoaded", function() {
       };
       console.log(tmp+'Biscuit/frame1'+add+frameprocess);
       ext = '.jpg';
-      var imageData = new Buffer(frame64, 'base64');
+      var imageData = new parent.Buffer(frame64, 'base64');
       base64decoder(imageData, options, function(err, saved) {});
       frameprocess++
     }
     dialog.showSaveDialog(function(pathz) {
-      exec(path+' -pattern_type glob -i "'+tmp+'Biscuit/frame*.jpg" -framerate '+frex+' -r '+frex+' -s 1280x920 "'+pathz+'"', function(code, output) {
+      parent.exec(path+' -pattern_type glob -i "'+tmp+'Biscuit/frame*.jpg" -framerate '+frex+' -r '+frex+' -s 1280x920 "'+pathz+'"', function(code, output) {
       console.log('Program output:', output);
       console.log('Done');
-      rm('-rf', tmp+'Biscuit/*');
+      parent.rm('-rf', tmp+'Biscuit/*');
     });
     });
   });
@@ -225,7 +226,7 @@ var base64encoder = function(url, options, callback) {
       image = body.toString('base64');
       return callback(null, image);
     } else {
-      image = new Buffer(body, 'base64');
+      image = new parent.Buffer(body, 'base64');
       return callback(null, image);
     }
   };
