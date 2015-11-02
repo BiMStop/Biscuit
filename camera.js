@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", function() {
   // Download button
   document.querySelector("#btn-download").addEventListener("click", function() {
     var go = 0;
-    dialog.showOpenDialog({properties:[{'openDirectory'}]},function(pathz) {
+    dialog.showOpenDialog({properties:['openDirectory']},function(pathz) {
       var pathz = pathz;
     });
     // Setup
