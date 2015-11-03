@@ -3,6 +3,7 @@
   <script src="jquery.js"></script>
   <script src="camera.js"></script>
   <script src="adapter.min.js"></script>
+  <script src="animate.min.js"></script>
   <title>Biscuit | Camera</title>
   <center>
     <div class="invisible">
@@ -10,22 +11,27 @@
     </div>
 
     <div id="captureForm">
-      <video style="float: center;opacity: 1;margin: 0 0 0 -50%;" id="video" width="320" height="240" autoplay></video>
-      <canvas id="canvas" style="float: center;margin: 0 0 0 -50%;opacity: 0.5;" width="320" height="240"></canvas>
-      <img style="float: center;margin: 0 0 0 -50%;opacity: 0;" id="playback" src="#" width="320" height="240"></img>
-      <br>
-      <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
-      <br>
-      <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-onion">Toggle Onion Skinning</button>
-      <br>
-      <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-playback">Playback</button>&nbsp;Framerate:&nbsp;<input value="24" id="framerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
-      <br>
+      <div id="display" style="height:240px;width:320px;">
+        <center>
+        <video style="opacity:1;" id="video" width="320" height="240" autoplay></video>
+        <canvas id="canvas" style="opacity:0.5;" width="320" height="240"></canvas>
+        <img style="opacity:0;" id="playback" src="#" width="320" height="240"></img>
+      </center>
+      </div>
+        <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
+        <br>
+        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-onion">Toggle Onion Skinning</button>
+        <br>
+        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-playback">Playback</button>&nbsp;Framerate:&nbsp;
+        <input value="24" id="framerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
+        <br>
         <h3>Frames</h3>
         <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-download">Download Frames</button>
-        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-export">Export Video</button>&nbsp;Framerate:&nbsp;<input value="24" id="exframerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
+        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-export">Export Video</button>&nbsp;Framerate:&nbsp;
+        <input value="24" id="exframerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
         <a id="video-dl" href="#"></a>
         <div id="area-frame-preview">
+        </div>
       </div>
-    </div>
   </center>
 </body>
