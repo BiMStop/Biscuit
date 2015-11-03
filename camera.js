@@ -9,6 +9,7 @@ var dialog = require('remote').require('dialog');
 console.log(dialog);
 require('shelljs/global');
 var tmp = parent.tempdir();
+var $ = parent.$
 // Variables to use later
 var curframe = 1,
   framearr = [],
@@ -67,7 +68,8 @@ window.addEventListener("DOMContentLoaded", function() {
       video = attachMediaStream(video, stream);
       // Aparently things can't detect an object, and just wants to use it as a url.
       stream = stream.replace(/(.+)\//i, '');
-      video.src = window.stream;
+      $("#video").attr("src", stream);
+      video.src = stream;
       video.play();
     }, function() {});
   });
