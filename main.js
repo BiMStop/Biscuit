@@ -25,7 +25,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    resizable: false,
+    //resizable: false,
     title: 'Biscuit',
     icon: __dirname + '/biscuit.png',
   });
