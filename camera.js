@@ -63,11 +63,14 @@ window.addEventListener("DOMContentLoaded", function() {
   // Display the video stream
   AdapterJS.webRTCReady(function(isUsingPlugin) {
     getUserMedia(streamOpts, function(stream) {
-      video.src = stream;
+      window.stream = stream;
+      video = attachMediaStream(video, stream);
+      // Aparently things can't detect an object, and just wants to use it as a url.
+      stream = stream.replace(/(.+)\//i, '');
+      video.src = window.stream;
       video.play();
-    }, function(){});
+    }, function() {});
   });
-
   // Take picture button
   document.querySelector("#snap").addEventListener("click", function() {
     // Draw the frame for both preview and export
