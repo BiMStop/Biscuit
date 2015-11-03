@@ -4,7 +4,7 @@ Setup
 var require = parent.require;
 console.log('camera.js loaded!')
 var fs = parent.require('fs');
-var ffmpeg = parent.require('ffmpeg-static');
+var ffmpeg = require('ffmpeg-static');
 var dialog = require('remote').require('dialog');
 console.log(dialog);
 require('shelljs/global');
