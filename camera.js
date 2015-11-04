@@ -13,6 +13,7 @@ var $ = parent.$
 // Variables to use later
 var curframe = 1,
   framearr = [],
+  scale = (1 + (1/3)),
   framez = '-i ',
   onion = true,
   pbarr = [],
@@ -23,7 +24,6 @@ var curframe = 1,
     "video": true
   };
 // Shortcuts moved to bottom
-
 function playback() {
   document.querySelector("#playback").src = pbarr[cur];
   console.log(pbarr[cur]);
@@ -44,6 +44,15 @@ function playback() {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
+  // Connect to the required DOM elements
+  var canvasuse = document.querySelector("#canvasuse"),
+    contextuse = canvasuse.getContext("2d"),
+    canvas = document.querySelector("#canvas"),
+    context = canvas.getContext("2d"),
+    video = document.getElementById("video"),
+    playbackimg = document.getElementById("playback"),
+    QframePreview = document.querySelector("#area-frame-preview");
+
   fs.readFile(tmp+'Biscuit/framearr.biscuit', function(err, data) {
     var framearr = data;
   });
@@ -53,13 +62,6 @@ window.addEventListener("DOMContentLoaded", function() {
   fs.readFile(tmp+'Biscuit/curframe.biscuit', function(err, data) {
     var curframe = data;
   });
-  // Connect to the required DOM elements
-  var canvasuse = document.querySelector("#canvasuse"),
-    contextuse = canvasuse.getContext("2d"),
-    canvas = document.querySelector("#canvas"),
-    context = canvas.getContext("2d"),
-    video = document.getElementById("video"),
-    QframePreview = document.querySelector("#area-frame-preview");
 
   // Display the video stream
   AdapterJS.webRTCReady(function(isUsingPlugin) {
