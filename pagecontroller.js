@@ -20,22 +20,13 @@ function loadcamera() {
   });
 }
 
-function loadhome() {
-  $("iframe").fadeOut(350);
-  $(".content").fadeOut(350);
-  $("iframe").css("display", "none");
-  $(".content").css("display", "none");
-  $('#iframe').attr('src', 'indexc.html').load(function() {
-    $("iframe").fadeIn(350);
-  });
-}
-
 function loadaudio() {
   $("iframe").fadeOut(350);
   $(".content").fadeOut(350);
   $("iframe").css("display", "none");
   $(".content").css("display", "none");
   $('#iframe').attr('src', 'audio.html').load(function() {
+    $(".content").css("display", "none");
     $("iframe").fadeIn(350);
   });
 }
@@ -46,6 +37,7 @@ function loadwrite() {
   $("iframe").css("display", "none");
   $(".content").css("display", "none");
   $('#iframe').attr('src', 'write.html').load(function() {
+    $(".content").css("display", "none");
     $("iframe").fadeIn(350);
   });
 }
@@ -56,6 +48,7 @@ function loadabout() {
   $("iframe").css("display", "none");
   $(".content").css("display", "none");
   $('#iframe').attr('src', 'about.html').load(function() {
+    $(".content").css("display", "none");
     $("iframe").fadeIn(350);
   });
 }
