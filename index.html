@@ -35,11 +35,35 @@
   <script src="pagecontroller.js"></script>
   <script src="message.js"></script>
   <script>
-  var dialog = require('remote').require('dialog');
-  console.log(dialog);
-  dialog.showOpenDialog({properties:[{openDirectory}]},function(pathz) {
-    var pathz = pathz;
-  });
+    var winW = 630,
+      winH = 460;
+
+    function refreshwindow() {
+      if (document.body && document.body.offsetWidth) {
+        winW = document.body.offsetWidth;
+        winH = document.body.offsetHeight;
+      }
+      if (document.compatMode == 'CSS1Compat' &&
+        document.documentElement &&
+        document.documentElement.offsetWidth) {
+        winW = document.documentElement.offsetWidth;
+        winH = document.documentElement.offsetHeight;
+      }
+      if (window.innerWidth && window.innerHeight) {
+        winW = window.innerWidth;
+        winH = window.innerHeight;
+      }
+    }
+    setInterval('refreshwindow()', 20);
+    var dialog = require('remote').require('dialog');
+    console.log(dialog);
+    dialog.showOpenDialog({
+      properties: [{
+        openDirectory
+      }]
+    }, function(pathz) {
+      var pathz = pathz;
+    });
     require('shelljs/global');
     var dialog = require('remote').require('dialog')
     var fs = require('fs');
@@ -49,18 +73,20 @@
   </script>
   <script>
     function startproject() {
-      dialog.showSaveDialog({filters: [{
-            name: 'Biscuit Project File',
-            extensions: ['bpr']
-          }]},function(pathzz) {
-            var projectname = pathzz.replace('.bpr','');
-            projectname = projectname.replace(/(.+)\//i,'');
-            console.log(projectname);
-            fs.writeFile(pathzz, 'projectname:'+projectname, function(err) {
-              console.log(err);
-            });
-          });
-        }
+      dialog.showSaveDialog({
+        filters: [{
+          name: 'Biscuit Project File',
+          extensions: ['bpr']
+        }]
+      }, function(pathzz) {
+        var projectname = pathzz.replace('.bpr', '');
+        projectname = projectname.replace(/(.+)\//i, '');
+        console.log(projectname);
+        fs.writeFile(pathzz, 'projectname:' + projectname, function(err) {
+          console.log(err);
+        });
+      });
+    }
   </script>
 </body>
 

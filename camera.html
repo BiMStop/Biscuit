@@ -33,5 +33,29 @@
         <div id="area-frame-preview">
         </div>
       </div>
+      <script>
+      function dynwindow(){
+        var childvid = document.querySelector('#video');
+        console.log(parent.winW);
+        var scale = (1 + (1/3));
+        var childcanvas = document.querySelector('#canvas');
+        var childpbimg = document.querySelector('#playback');
+        var containdiv = document.querySelector('#display');
+        var dynwidth = parent.winW;
+        childvid.width = (dynwidth / 2.5);
+        var vidwidth = childvid.width;
+        vidwidth = parseInt(vidwidth);
+        var vidheight = vidwidth / scale;
+        childvid.height = vidheight;
+        childcanvas.height = vidheight;
+        childpbimg.height = vidheight;
+        childcanvas.width = vidwidth;
+        containdiv.style.height = vidheight;
+        containdiv.style.width = vidwidth;
+        childpbimg.width = vidwidth;
+        console.log(vidwidth);
+      }
+      setInterval('dynwindow()', 20);
+      </script>
   </center>
 </body>
