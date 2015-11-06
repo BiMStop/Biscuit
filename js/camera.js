@@ -572,31 +572,51 @@ Mousetrap Source
     return c
   })
 })(window, document);
+function takeframe(){
+  // Draw the frame for both preview and export
+  context.drawImage(video, 0, 0, picheight, picwidth);
+  // Convert the frame to JPG format
+  var frame = canvas.toDataURL("image/jpeg");
+  // Preview the captured frame
+  QframePreview.insertAdjacentHTML('beforeend', '<img style="border: 2px solid #DDB05B;" class="frame" id="f' + curframe + '" width=' + picwidth / 2 + ' height=' + picheight / 2 + ' src="' + frame + '"/>');
+  //$("#f"+curframe).css("display", "none");
+  $("#f" + curframe).fadeIn(350);
+  //QframePreview.insertAdjacentHTML('beforeend', '<script>document.querySelector("#f' + curframe + '").addEventListener("click",function(){framearr.splice("' + curframe + '");pbarr.splice("' + curframe + '");document.querySelector("#f' + curframe + '").width = 0;document.querySelector("#f' + curframe + '").height = 0;document.querySelector("#f' + curframe + '").src ="";});</script>')
+  // Stuff after to not slow down frame preview
+  contextuse.drawImage(video, 0, 0, picheight * 4, picwidth * 4);
+  // Convert the frame to JPG format
+  var frameuse = canvasuse.toDataURL("image/jpeg"),
+    frameq = frameuse.replace('data:image/jpeg;base64,', '');
+  // Store the frame for saving later
+  framearr.push(frameq);
+  // Store frame for playback
+  pbarr.push(frame);
+  fs.writeFile(tmp + 'Biscuit/framearr.biscuit', framearr, function(err) {});
+  fs.writeFile(tmp + 'Biscuit/pbarr.biscuit', pbarr, function(err) {});
+  fs.writeFile(tmp + 'Biscuit/curframe.biscuit', curframe, function(err) {});
 
+  // Store frame for video export
+  // Go to the next frame
+  curframe++;
+}
 // Shortcuts
 Mousetrap.bind('command+shift+c', function() {
-  window.location.href = "camera.html";
+  parent.loadcamera();
 });
 Mousetrap.bind('ctrl+shift+c', function() {
-  window.location.href = "camera.html";
-});
-Mousetrap.bind('command+shift+h', function() {
-  window.location.href = "index.html";
-});
-Mousetrap.bind('ctrl+shift+h', function() {
-  window.location.href = "index.html";
+  parent.loadcamera();
 });
 Mousetrap.bind('command+shift+a', function() {
-  window.location.href = "audio.html";
+  parent.loadaudio();
 });
 Mousetrap.bind('ctrl+shift+a', function() {
-  window.location.href = "audio.html";
+  parent.loadaudio();
 });
 Mousetrap.bind('command+shift+w', function() {
-  window.location.href = "write.html";
+  parent.loadwrite();
 });
 Mousetrap.bind('ctrl+shift+w', function() {
-  window.location.href = "write.html";
+  parent.loadwrite();
 });
 Mousetrap.bind('r', function() {
   takeframe();
