@@ -12,11 +12,9 @@
 
     <div id="captureForm">
       <div id="display" style="height:240px;width:320px;">
-        <center>
-        <video style="opacity:1;" id="video" width="320" height="240" autoplay></video>
-        <canvas id="canvas" style="opacity:0.5;" width="320" height="240"></canvas>
+        <video style="opacity:1;position:fixed;z-index:1;" id="video" width="320" height="240" autoplay></video>
+        <canvas id="canvas" style="opacity:0.5;position:fixed;z-index:10;" width="320" height="240"></canvas>
         <img style="opacity:0;" id="playback" src="#" width="320" height="240"></img>
-      </center>
       </div>
         <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
         <br>
@@ -35,8 +33,8 @@
       </div>
       <script>
       function dynwindow(){
+        winW = parent.winW
         var childvid = document.querySelector('#video');
-        console.log(parent.winW);
         var scale = (1 + (1/3));
         var childcanvas = document.querySelector('#canvas');
         var childpbimg = document.querySelector('#playback');
@@ -53,7 +51,6 @@
         containdiv.style.height = vidheight;
         containdiv.style.width = vidwidth;
         childpbimg.width = vidwidth;
-        console.log(vidwidth);
       }
       setInterval('dynwindow()', 20);
       </script>
