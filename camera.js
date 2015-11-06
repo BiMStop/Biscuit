@@ -84,7 +84,7 @@ window.addEventListener("DOMContentLoaded", function() {
     // Preview the captured frame
     QframePreview.insertAdjacentHTML('beforeend', '<img style="border: 2px solid #DDB05B;" class="frame" id="f' + curframe + '" width="160" height="120" src="' + frame + '"/>');
     //$("#f"+curframe).css("display", "none");
-    //$("#f"+curframe).fadeIn(350);
+    $("#f"+curframe).fadeIn(350);
     //QframePreview.insertAdjacentHTML('beforeend', '<script>document.querySelector("#f' + curframe + '").addEventListener("click",function(){framearr.splice("' + curframe + '");pbarr.splice("' + curframe + '");document.querySelector("#f' + curframe + '").width = 0;document.querySelector("#f' + curframe + '").height = 0;document.querySelector("#f' + curframe + '").src ="";});</script>')
       // Stuff after to not slow down frame preview
     contextuse.drawImage(video, 0, 0, 1280, 960);
