@@ -1,6 +1,6 @@
 @font-face {
   font-family: biscuit;
-  src: url('Biscuit.ttf');
+  src: url('Biscuit.otf');
 }
 html {
   background-color: #FFE3BB;
@@ -51,17 +51,67 @@ input {
   color: #DDB05B;
   border-radius: 2px;
 }
-button {
-  height: 22px;
-  border: 1px;
-  color: #DDB05B;
-  border-radius: 2px;
-}
 p {
   font-weight: 400;
 }
 .bold {
   font-weight: 700;
+}
+.numtext {
+  margin-top: 2px;
+  height: 18px;
+  width: 18px;
+  border: 1px solid #DDB05B;
+  border-radius: 2px;
+}
+button {
+  height: 22px;
+  background-color: #DDB05B;
+  border: 1px solid #b48f49;
+  color: #FFFFFF;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-top: 2px;
+  font-family: biscuit;
+}
+.content {
+  overflow-x: hidden;
+  width: calc(100% - 70px);
+  max-width: 800px;
+  background-color: rgba(230, 230, 230, 0.3);
+  padding: 10px 10px 2em 60px;
+  border-radius: 10px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
+}
+.title {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-size: 30px;
+  width: 100%;
+  background-color: rgba(170, 122, 74, 0.25);
+  font-weight: bold;
+  padding: 0;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.invisible {
+  display: none;
+}
+
+/*============
+=======CAPTURE
+==============*/
+
+#captureForm {
+  margin: 0 auto;
+}
+#btn-download {
+  display: block;
+}
+#area-frame-preview img {
+  display: inline-block;
+  margin: 0.5em;
 }
 
 /*=====================
@@ -115,51 +165,4 @@ nav ul li a {
   display: inline-block;
   margin: 0;
   color: #DDB05B;
-}
-.button {
-  height: 22px;
-  background-color: #DDB05B;
-  border: 1px solid #b48f49;
-  color: #FFFFFF;
-  font-weight: bold;
-  border-radius: 4px;
-}
-.content {
-  overflow-x: hidden;
-  width: calc(100% - 70px);
-  max-width: 800px;
-  background-color: rgba(230, 230, 230, 0.3);
-  padding: 10px 10px 2em 60px;
-  border-radius: 10px;
-  margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Sans', sans-serif;
-}
-.title {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  font-size: 30px;
-  width: 100%;
-  background-color: rgba(170, 122, 74, 0.25);
-  font-weight: bold;
-  padding: 0;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-}
-.invisible {
-  display: none;
-}
-
-/*============
-=======CAPTURE
-==============*/
-
-#captureForm {
-  margin: 0 auto;
-}
-#btn-download {
-  display: block;
-}
-#area-frame-preview img {
-  display: inline-block;
-  margin: 0.5em;
 }

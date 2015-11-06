@@ -10,38 +10,49 @@
       <canvas id="canvasuse" width="1280" height="960"></canvas>
     </div>
 
-    <div id="captureForm">
+    <div id="captureForm" style="background-color:#FFE3BB;">
+      <div style="float:right;">
+        <br>
+        <div id="controls" width="100px" style="border: 3px solid #DDB05B;border-radius:5px;margin-right:15px;">
+          <h3>Controls</h3>
+          <h4 style="margin-top:2px;margin-bottom:2px;">Set Aspect Ratio</h4>
+          <button id="1:1" onclick="scale=1;">1:1</button><button id="3:2" onclick="scale=(3/2);">3:2</button><button id="4:3" onclick="scale=(4/3);">4:3</button><button id="16:9" onclick="scale=(16/9);">16:9</button>
+        </div>
+      </div>
       <div id="display" style="height:240px;width:320px;">
-        <!-- If spacing is broken don't blame me, it it very fickle.-->
+        <!-- If spacing is broken don't blame me, it is very fickle.-->
         <video style="opacity:1;position:fixed;z-index:1;" id="video" width="320" height="240" autoplay></video>
         <canvas id="canvas" style="opacity:0.5;position:fixed;z-index:10;" width="320" height="240"></canvas>
         <img style="opacity:0;" id="playback" src="#" width="320" height="240"></img>
       </div>
-        <button id="snap" style="float:center;font-family:biscuit;" class="button">Take Frame</button>
-        <br>
-        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-onion">Toggle Onion Skinning</button>
-        <br>
-        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-playback">Playback</button>&nbsp;Framerate:&nbsp;
-        <input value="24" id="framerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
-        <br>
-        <h3>Frames</h3>
-        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-download">Download Frames</button>
-        <button class="button" style="margin-top:2px;float:center;font-family:biscuit;" id="btn-export">Export Video</button>&nbsp;Framerate:&nbsp;
-        <input value="24" id="exframerate" type="text" style="margin-top:2px;height: 18px;width: 18px;border: 1px solid #DDB05B;border-radius:2px;">
-        <a id="video-dl" href="#"></a>
-        <div id="area-frame-preview">
-        </div>
+      <button id="snap" style="float:center;">Take Frame</button>
+      <br>
+      <button style="float:center;" id="btn-onion">Toggle Onion Skinning</button>
+      <br>
+      <button style="float:center;" id="btn-playback">Playback</button>&nbsp;Framerate:&nbsp;
+      <input value="24" id="framerate" type="text" class="numtext">
+      <br>
+      <h3>Frames</h3>
+      <button style="float:center;" id="btn-download">Download Frames</button>
+      <button style="float:center;" id="btn-export">Export Video</button>&nbsp;Framerate:&nbsp;
+      <input value="24" id="exframerate" type="text" class="numtext">
+      <a id="video-dl" href="#"></a>
+      <div id="area-frame-preview">
       </div>
-      <script>
-      function dynwindow(){
-        winW = parent.winW
+    </div>
+    <script>
+      var scale = (1 + (1 / 3));
+      var widthdiv = 2.5;
+
+      function dynwindow() {
+        winW = parent.winW;
         var childvid = document.querySelector('#video');
-        var scale = (1 + (1/3));
         var childcanvas = document.querySelector('#canvas');
         var childpbimg = document.querySelector('#playback');
         var containdiv = document.querySelector('#display');
+        var controls = document.querySelector('#controls');
         var dynwidth = parent.winW;
-        childvid.width = (dynwidth / 2.5);
+        childvid.width = (dynwidth / widthdiv);
         var vidwidth = childvid.width;
         vidwidth = parseInt(vidwidth);
         var vidheight = vidwidth / scale;
@@ -52,8 +63,10 @@
         containdiv.style.height = vidheight;
         containdiv.style.width = vidwidth;
         childpbimg.width = vidwidth;
+        controls.width = (winW / 8);
+        document.getElementById("controls").style = "margin-right:100px";
       }
       setInterval('dynwindow()', 20);
-      </script>
+    </script>
   </center>
 </body>
