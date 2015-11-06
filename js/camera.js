@@ -600,30 +600,9 @@ function takeframe(){
   curframe++;
 }
 // Shortcuts
-Mousetrap.bind('command+shift+c', function() {
-  parent.loadcamera();
-});
-Mousetrap.bind('ctrl+shift+c', function() {
-  parent.loadcamera();
-});
-Mousetrap.bind('command+shift+a', function() {
-  parent.loadaudio();
-});
-Mousetrap.bind('ctrl+shift+a', function() {
-  parent.loadaudio();
-});
-Mousetrap.bind('command+shift+w', function() {
-  parent.loadwrite();
-});
-Mousetrap.bind('ctrl+shift+w', function() {
-  parent.loadwrite();
-});
 Mousetrap.bind('r', function() {
   takeframe();
 });
 Mousetrap.bind('p', function() {
   playback();
-});
-Mousetrap.bind('command+shift+0', function() {
-  mainWindow.openDevTools();
 });
