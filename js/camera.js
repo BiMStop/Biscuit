@@ -71,6 +71,7 @@ window.addEventListener("DOMContentLoaded", function() {
       window.stream = stream;
       video = attachMediaStream(video, stream);
       // Aparently things can't detect an object, and just wants to use it as a url.
+      // Also complains that this isn't a function, but it doesn't work without it. -.-
       stream = stream.replace(/(.+)\//i, '');
       $("#video").attr("src", stream);
       video.src = stream;
