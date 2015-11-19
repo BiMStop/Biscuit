@@ -1,5 +1,24 @@
 {
-    "name": "biscuit",
-    "version": "1.1.0",
-    "main": "main.js",
+  "name": "biscuit",
+  "version": "1.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron ./app",
+    "clean": "rm -rf ./dist",
+    "clean:osx": "rm -rf ./dist/osx",
+    "clean:win": "rm -rf ./dist/win",
+    "build": "npm run clean && npm run build:osx && npm run build:win",
+    "build:osx": "npm run clean:osx && electron-packager ./app \"Biscuit\" --out=dist/osx --platform=darwin --arch=x64 --version=0.25.3 --icon=biscuit.icns",
+    "build:win": "npm run clean:win && electron-packager ./app \"Biscuit\" --out=dist/win --platform=win32 --arch=ia32 --version=0.25.3 --icon=biscuit.ico",
+    "pack": "npm run pack:osx && npm run pack:win",
+    "pack:osx": "npm run build:osx && electron-builder \"dist/osx/Biscuit.app\" --platform=osx --out=\"dist/osx\" --config=packager.json",
+    "pack:win": "npm run build:win && electron-builder \"dist/win/Biscuit-win32\" --platform=win --out=\"dist/win\" --config=packager.json"
+  },
+  "dependencies": {
+    "electron-builder": "^1.0.0",
+    "electron-packager": "^4.0.2",
+    "electron-prebuilt": "^0.25.2",
+    "iframe-api": "^0.9.1"
+  }
 }
